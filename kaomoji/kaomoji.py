@@ -30,7 +30,7 @@ class Kaomoji:
 
     @kaomoji.command(name="list")
     async def _list(self):
-        k = [i for i in self.emotes]
+        k = [i for i in self.feelings]
         await self.bot.say("```" + ', '.join(k) + "```")
         print("Kaomoji list called")
 
