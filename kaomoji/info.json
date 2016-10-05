@@ -1,0 +1,8 @@
+{
+    "AUTHOR" : "ScarletRaven",
+    "DESCRIPTION" : "Random assortment of Kaomojis",
+    "DISABLED" : false,
+    "INSTALL_MSG" : "`[p]kaomoji list` to see the categories available. \nUse of `[p]alias` is recommended.",
+    "NAME" : "Kaomoji",
+    "SHORT" : "Random Japanese Emojis"
+}
