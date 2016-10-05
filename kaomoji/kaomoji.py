@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands
 from random import choice as rnd
 from .utils.dataIO import dataIO
-from .utils import checks
 import os
 
 __author__ = "ScarletRav3n"
@@ -42,6 +41,62 @@ class Kaomoji:
     @kaomoji.command(name="happy", invoke_without_command=True)
     async def _happy(self):
         await self.bot.say(rnd(self.feelings["happy"]))
+
+    @kaomoji.command(name="love", invoke_without_command=True)
+    async def _love(self):
+        await self.bot.say(rnd(self.feelings["love"]))
+
+    @kaomoji.command(name="success", invoke_without_command=True)
+    async def _success(self):
+        await self.bot.say(rnd(self.feelings["success"]))
+
+    @kaomoji.command(name="confused", invoke_without_command=True)
+    async def _confused(self):
+        await self.bot.say(rnd(self.feelings["confused"]))
+
+    @kaomoji.command(name="crazy", invoke_without_command=True)
+    async def _crazy(self):
+        await self.bot.say(rnd(self.feelings["crazy"]))
+
+    @kaomoji.command(name="hungry", invoke_without_command=True)
+    async def _hungry(self):
+        await self.bot.say(rnd(self.feelings["hungry"]))
+
+    @kaomoji.command(name="meh", invoke_without_command=True)
+    async def _meh(self):
+        await self.bot.say(rnd(self.feelings["meh"]))
+
+    @kaomoji.command(name="shy", invoke_without_command=True)
+    async def _shy(self):
+        await self.bot.say(rnd(self.feelings["shy"]))
+
+    @kaomoji.command(name="smug", invoke_without_command=True)
+    async def _smug(self):
+        await self.bot.say(rnd(self.feelings["smug"]))
+
+    @kaomoji.command(name="surprised", invoke_without_command=True)
+    async def _surprised(self):
+        await self.bot.say(rnd(self.feelings["surprised"]))
+
+    @kaomoji.command(name="angry", invoke_without_command=True)
+    async def _angry(self):
+        await self.bot.say(rnd(self.feelings["angry"]))
+
+    @kaomoji.command(name="hurt", invoke_without_command=True)
+    async def _hurt(self):
+        await self.bot.say(rnd(self.feelings["hurt"]))
+
+    @kaomoji.command(name="sad", invoke_without_command=True)
+    async def _sad(self):
+        await self.bot.say(rnd(self.feelings["sad"]))
+
+    @kaomoji.command(name="scared", invoke_without_command=True)
+    async def _scared(self):
+        await self.bot.say(rnd(self.feelings["scared"]))
+
+    @kaomoji.command(name="worried", invoke_without_command=True)
+    async def _worried(self):
+        await self.bot.say(rnd(self.feelings["worried"]))
 
 
 def check_folders():
