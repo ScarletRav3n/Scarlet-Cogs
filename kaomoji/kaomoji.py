@@ -21,7 +21,7 @@ class Kaomoji:
         dataIO.save_json(self.feelings, self.service)
         dataIO.is_valid_json("data/kaomoji/feelings.json")
 
-    @commands.group(pass_context=True)
+    @commands.group(pass_context=True, aliases=["kao"])
     async def kaomoji(self, ctx):
         if ctx.invoked_subcommand is None:
             print("This is a 4.0 GPA")
