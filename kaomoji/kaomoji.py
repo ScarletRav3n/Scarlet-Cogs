@@ -34,85 +34,213 @@ class Kaomoji:
         await self.bot.say("```" + ', '.join(k) + "```")
         print("Kaomoji list called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def excited(self):
-        await self.bot.say(rnd(self.system["excited"]))
-        print("Excited kaomoji called")
+    @kaomoji.command()
+    async def excited(self, n: int=None):
+        c = "excited"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def happy(self):
-        await self.bot.say(rnd(self.system["happy"]))
-        print("Happy kaomoji called")
+    @kaomoji.command()
+    async def happy(self, n: int=None):
+        c = "happy"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def love(self):
-        await self.bot.say(rnd(self.system["love"]))
-        print("Love kaomoji called")
+    @kaomoji.command()
+    async def love(self, n: int=None):
+        c = "love"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def success(self):
-        await self.bot.say(rnd(self.system["success"]))
-        print("Success kaomoji called")
+    @kaomoji.command()
+    async def success(self, n: int=None):
+        c = "success"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def confused(self):
-        await self.bot.say(rnd(self.system["confused"]))
-        print("Confused kaomoji called")
+    @kaomoji.command()
+    async def confused(self, n: int=None):
+        c = "confused"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def crazy(self):
-        await self.bot.say(rnd(self.system["crazy"]))
-        print("Crazy kaomoji called")
+    @kaomoji.command()
+    async def crazy(self, n: int=None):
+        c = "crazy"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def hungry(self):
-        await self.bot.say(rnd(self.system["hungry"]))
-        print("Hungry kaomoji called")
+    @kaomoji.command()
+    async def hungry(self, n: int=None):
+        c = "hungry"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def meh(self):
-        await self.bot.say(rnd(self.system["meh"]))
-        print("Meh kaomoji called")
+    @kaomoji.command()
+    async def meh(self, n: int=None):
+        c = "meh"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def shy(self):
-        await self.bot.say(rnd(self.system["shy"]))
-        print("Shy kaomoji called")
+    @kaomoji.command()
+    async def shy(self, n: int=None):
+        c = "shy"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def smug(self):
-        await self.bot.say(rnd(self.system["smug"]))
-        print("Smug kaomoji called")
+    @kaomoji.command()
+    async def smug(self, n: int=None):
+        c = "smug"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def surprised(self):
-        await self.bot.say(rnd(self.system["surprised"]))
-        print("Surprised kaomoji called")
+    @kaomoji.command()
+    async def surprised(self, n: int=None):
+        c = "surprised"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def angry(self):
-        await self.bot.say(rnd(self.system["angry"]))
-        print("Angry kaomoji called")
+    @kaomoji.command()
+    async def angry(self, n: int=None):
+        c = "angry"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def hurt(self):
-        await self.bot.say(rnd(self.system["hurt"]))
-        print("Hurt kaomoji called")
+    @kaomoji.command()
+    async def hurt(self, n: int=None):
+        c = "hurt"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def sad(self):
-        await self.bot.say(rnd(self.system["sad"]))
-        print("Sad kaomoji called")
+    @kaomoji.command()
+    async def sad(self, n: int=None):
+        c = "sad"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def scared(self):
-        await self.bot.say(rnd(self.system["scared"]))
-        print("Scared kaomoji called")
+    @kaomoji.command()
+    async def scared(self, n: int=None):
+        c = "scared"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def worried(self):
-        await self.bot.say(rnd(self.system["worried"]))
-        print("Worried kaomoji called")
+    @kaomoji.command()
+    async def worried(self, n: int=None):
+        c = "worried"
+        b = len(self.system[c])-1
+        if n is None:
+            await self.bot.say(rnd(self.system[c]))
+        else:
+            if n > b:
+                await self.bot.say("The highest kaomoji count for " + c + " is " + str(b))
+            else:
+                await self.bot.say(self.system[c][n])
+        print(c + " kaomoji called")
 
 
 def check_folders():
