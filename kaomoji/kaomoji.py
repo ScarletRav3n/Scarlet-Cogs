@@ -21,98 +21,53 @@ class Kaomoji:
         dataIO.save_json(self.feelings, self.service)
         dataIO.is_valid_json("data/kaomoji/feelings.json")
 
-    @commands.group(pass_context=True, aliases=["kao"])
-    async def kaomoji(self, ctx):
-        if ctx.invoked_subcommand is None:
-            print("This is a 4.0 GPA")
-            await self.bot.say("This is a 4.0 GPA")
-            return
+    @commands.group(aliases=["kao"], invoke_without_command=True)
+    async def kaomoji(self, category: str, number: int=None):
+        c = category.lower()
+        l = len(self.system[c])
+        n = number
+        # global b
+        if c in self.system:
+            if n is None:
+                await self.bot.say(rnd(self.system[c]))
+                # print(b)
+            else:
+                if n > l:
+                    await self.bot.say("The highest kaomoji count for " + c + " is " + str(l) + ". \n(╯°□°）╯︵ ┻━┻")
+                else:
+                    await self.bot.say(self.system[c][n])
+            print(c + " kaomoji called")
+        else:
+            await self.bot.say(c + "category not found. \n¯\_(ツ)_/¯")
 
     @kaomoji.command(name="list")
     async def _list(self):
+        """Shows all categories"""
         k = [i for i in self.system]
         await self.bot.say("```" + ', '.join(k) + "```")
         print("Kaomoji list called")
 
-    @kaomoji.command(invoke_without_command=True)
-    async def excited(self):
-        await self.bot.say(rnd(self.system["excited"]))
-        print("Excited kaomoji called")
+    @kaomoji.command()
+    async def count(self, category: str):
+        """Displays count per category"""
+        c = category.lower()
+        l = len(self.system[c])
+        await self.bot.say("There are " + str(l) + " kaomojis for " + c)
 
-    @kaomoji.command(invoke_without_command=True)
-    async def happy(self):
-        await self.bot.say(rnd(self.system["happy"]))
-        print("Happy kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def love(self):
-        await self.bot.say(rnd(self.system["love"]))
-        print("Love kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def success(self):
-        await self.bot.say(rnd(self.system["success"]))
-        print("Success kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def confused(self):
-        await self.bot.say(rnd(self.system["confused"]))
-        print("Confused kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def crazy(self):
-        await self.bot.say(rnd(self.system["crazy"]))
-        print("Crazy kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def hungry(self):
-        await self.bot.say(rnd(self.system["hungry"]))
-        print("Hungry kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def meh(self):
-        await self.bot.say(rnd(self.system["meh"]))
-        print("Meh kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def shy(self):
-        await self.bot.say(rnd(self.system["shy"]))
-        print("Shy kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def smug(self):
-        await self.bot.say(rnd(self.system["smug"]))
-        print("Smug kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def surprised(self):
-        await self.bot.say(rnd(self.system["surprised"]))
-        print("Surprised kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def angry(self):
-        await self.bot.say(rnd(self.system["angry"]))
-        print("Angry kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def hurt(self):
-        await self.bot.say(rnd(self.system["hurt"]))
-        print("Hurt kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def sad(self):
-        await self.bot.say(rnd(self.system["sad"]))
-        print("Sad kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def scared(self):
-        await self.bot.say(rnd(self.system["scared"]))
-        print("Scared kaomoji called")
-
-    @kaomoji.command(invoke_without_command=True)
-    async def worried(self):
-        await self.bot.say(rnd(self.system["worried"]))
-        print("Worried kaomoji called")
+    # ----- cleanup function ------
+    # @kaomoji.command()
+    # async def cleaner(self, on_off: str):
+    #     """Cleans up your commands"""
+    #     global b
+    #     _b = on_off.lower()
+    #     if _b == "on":
+    #         await self.bot.say("Cleaner is now ON ")
+    #         b = True
+    #     elif _b == "off":
+    #         await self.bot.say("Cleaner is now OFF ")
+    #         b = False
+    #     else:
+    #         await self.bot.say("It needs an ON or OFF state")
 
 
 def check_folders():
