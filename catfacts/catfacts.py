@@ -21,9 +21,23 @@ class CatFacts:
         dataIO.save_json(self.cat, self.service)
         dataIO.is_valid_json("data/catfacts/catfacts.json")
 
-    @commands.command(aliases=["cat"])
+    @commands.group(aliases=["cat"], invoke_without_command=True)
     async def catfacts(self):
         await self.bot.say(rnd(self.system))
+
+    @catfacts.command()
+    async def count(self):
+        l = len(self.system)
+        await self.bot.say("I have " + str(l) + " cat facts loaded.")
+
+    @catfacts.command()
+    async def number(self, number: int):
+        l = len(self.system)
+        n = number
+        if n > l:
+            await self.bot.say("I only have " + str(l) + " cat facts!")
+        else:
+            await self.bot.say(self.system[n])
 
 
 def check_folders():
