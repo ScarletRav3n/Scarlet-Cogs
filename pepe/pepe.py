@@ -24,18 +24,12 @@ class Pepe:
     @commands.group(aliases=["pepe"], invoke_without_command=True)
     async def _pepe(self, n: int=None):
         l = len(self.system["pepes"])
-        print("step 1")
         if n is None:
-            print("step 2a")
             await self.bot.say(rnd(self.system["pepes"]))
-            print("step 2b")
         else:
-            print("step 3")
             if n > l:
-                print("step 4a")
                 await self.bot.say("The highest pepe count is " + str(l) + ". \n(╯°□°）╯︵ ┻━┻")
             else:
-                print("step 4b")
                 await self.bot.say(self.system["pepes"][n])
 
     @_pepe.command()

@@ -22,10 +22,9 @@ class Kaomoji:
         dataIO.is_valid_json("data/kaomoji/feelings.json")
 
     @commands.group(aliases=["kao"], invoke_without_command=True)
-    async def kaomoji(self, category: str, number: int=None):
+    async def kaomoji(self, category: str, n: int=None):
         c = category.lower()
-        l = len(self.system[c])
-        n = number
+        l = len(self.system.get(c, []))
         # global b
         if c in self.system:
             if n is None:
@@ -38,7 +37,7 @@ class Kaomoji:
                     await self.bot.say(self.system[c][n])
             print(c + " kaomoji called")
         else:
-            await self.bot.say(c + "category not found. \n¯\_(ツ)_/¯")
+            await self.bot.say(c + " category couldn't be found. \n¯\_(ツ)_/¯")
 
     @kaomoji.command(name="list")
     async def _list(self):
