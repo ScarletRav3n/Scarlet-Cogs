@@ -8,7 +8,7 @@ __author__ = "ScarletRav3n"
 
 
 class Fun:
-    """Fun random commands"""
+    """fun random commands"""
 
     def __init__(self, bot):
         self.bot = bot
