@@ -6,8 +6,14 @@ Cogs for 26's [Red DiscordBot](https://github.com/Twentysix26/Red-DiscordBot)
 * Assorted by emotions.
 * List of 3,000+ kaomoji's!
 
-### Cat Facts Cog
-* Several cat facts for cat pleasure!
-* Specific facts are callable. 
+#### Fun Cog
+* Duel for hours at a time.
+* Find out if your love crush is the right one.
+* Other fun and random commands!
 
-If there is anything you would like to add to any of the json lists, please contact me!
+#### Pepe Cog
+* Several rare pepes.
+* Several not so rare pepes.
+* You never know what you'll get!
+
+If there is anything you would like to have added, please let me know!
