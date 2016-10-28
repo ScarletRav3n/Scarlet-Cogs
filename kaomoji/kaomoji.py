@@ -18,7 +18,7 @@ class Kaomoji:
         # self.kaomoji = `data/kaomoji`
 
     def save_emotes(self):
-        dataIO.save_json(self.feelings, self.service)
+        dataIO.save_json(self.feelings, self.system)
         dataIO.is_valid_json("data/kaomoji/feelings.json")
 
     @commands.group(aliases=["kao"], invoke_without_command=True)
