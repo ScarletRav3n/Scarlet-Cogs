@@ -59,6 +59,10 @@ class Fun:
         await self.bot.say("I'm kink shaming you, " + author.mention)
 
     @commands.command()
+    async def calculated(self):
+        await self.bot.say("That was " + str(randint(0, 100)) + "% calculated!")
+
+    @commands.command()
     async def butts(self):
         await self.bot.say("ლ(́◉◞౪◟◉‵ლ)")
 
