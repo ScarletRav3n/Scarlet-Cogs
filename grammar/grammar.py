@@ -17,14 +17,14 @@ class Grammar:
     @commands.command()
     @checks.admin_or_permissions(administrator=True)
     async def grammar(self, on_off: str):
-        """Toggle carrots"""
+        """Toggle ^ caret"""
         f = on_off.lower()
         global b
         if f == "on":
-            await self.bot.say("Deleting carrots is now ON. \n`Make sure I have the 'manage_messages' permission`")
+            await self.bot.say("Deleting carets is now ON. \n`Make sure I have the 'manage_messages' permission`")
             b = True
         elif f == "off":
-            await self.bot.say("Deleting carrots is now OFF.")
+            await self.bot.say("Deleting carets is now OFF.")
             b = False
         else:
             await self.bot.say("I need an ON or OFF state.")
@@ -33,7 +33,6 @@ class Grammar:
         k = m.content.lower()
         for x in self.bot.command_prefix:
             if x in m.content:
-                # print("nothing")
                 return
             elif "your a " in k:
                 p = "you're*"
