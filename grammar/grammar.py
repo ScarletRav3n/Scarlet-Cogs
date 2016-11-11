@@ -44,6 +44,8 @@ class Grammar:
                 p = "they're*"
             elif "their a " in k:
                 p = "they're*"
+            elif "theres a " in k:
+                p = "there's*"
             elif "tommorrow" in k:
                 p = "tomorrow*"
             elif "begining" in k:
