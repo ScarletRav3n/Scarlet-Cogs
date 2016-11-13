@@ -21,4 +21,5 @@ Cogs for 26's [Red DiscordBot](https://github.com/Twentysix26/Red-DiscordBot)
 * "your a butt" will now get "you're*" as a response.
 * Optional: Can delete messages starting with ^'s.
 
-If there is anything you would like to have added, please let me know!
+If there is anything you would like to have added, please let me know on Discord!
+ScarletRaven#0546
