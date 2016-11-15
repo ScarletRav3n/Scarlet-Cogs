@@ -34,23 +34,49 @@ class Grammar:
         for x in self.bot.command_prefix:
             if x in m.content:
                 return
-            elif "your a " in k:
+            elif "a a" in k: # a/an
+                p = "an*"
+            elif "a e" in k:
+                p = "an*"
+            elif "a o" in k:
+                p = "an*"
+            elif "a u" in k:
+                p = "an*"
+            elif "a i" in k:
+                p = "an*"
+            elif "your a " in k: # your/there
                 p = "you're*"
             elif "your an " in k:
                 p = "you're*"
-            elif "its not" in k:
-                p = "it's*"
+            elif "your on " in k:
+                p = "you're*"
             elif "their not" in k:
                 p = "they're*"
             elif "their a " in k:
                 p = "they're*"
+            elif "their an " in k:
+                p = "they're*"
             elif "theres a " in k:
                 p = "there's*"
-            elif "tommorrow" in k:
+            elif "theres an " in k:
+                p = "there's*"
+            elif "tommorrow" in k: # spelling
                 p = "tomorrow*"
             elif "begining" in k:
                 p = "beginning*"
-            elif "^" in m.content:
+            elif "litteral" in k:
+                p = "literal*"
+            elif "dont " in k: # aphostrophes
+                p = "don't*"
+            elif "cant " in k:
+                p = "can't*"
+            elif "wont " in k:
+                p = "won't*"
+            elif "isnt " in k:
+                p = "isn't*"
+            elif "its not" in k:
+                p = "it's*"
+            elif "^" in m.content: # caret
                 if b is True:
                     await self.bot.delete_message(m)
                 return
