@@ -68,6 +68,8 @@ class Grammar:
                 p = "literal*"
             elif "dont " in k: # aphostrophes
                 p = "don't*"
+            elif "didnt " in k:
+                p = "didn't*"
             elif "cant " in k:
                 p = "can't*"
             elif "wont " in k:
