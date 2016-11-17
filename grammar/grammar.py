@@ -34,15 +34,15 @@ class Grammar:
         for x in self.bot.command_prefix:
             if x in m.content:
                 return
-            elif "a a" in k: # a/an
+            elif " a a" in k: # a/an
                 p = "an*"
-            elif "a e" in k:
+            elif " a e" in k:
                 p = "an*"
-            elif "a o" in k:
+            elif " a o" in k:
                 p = "an*"
-            elif "a u" in k:
+            elif " a u" in k:
                 p = "an*"
-            elif "a i" in k:
+            elif " a i" in k:
                 p = "an*"
             elif "your a " in k: # your/there
                 p = "you're*"
