@@ -5,6 +5,8 @@ from cogs.utils import checks
 
 __author__ = "ScarletRav3n"
 
+# TODO: Find a better way to trigger a/an's
+
 b = False
 
 
@@ -34,16 +36,16 @@ class Grammar:
         for x in self.bot.command_prefix:
             if x in m.content:
                 return
-            elif " a a" in k: # a/an
-                p = "an*"
-            elif " a e" in k:
-                p = "an*"
-            elif " a o" in k:
-                p = "an*"
-            elif " a u" in k:
-                p = "an*"
-            elif " a i" in k:
-                p = "an*"
+            # elif " a a" in k: # a/an
+               # p = "an*"
+            # elif " a e" in k:
+               # p = "an*"
+            # elif " a o" in k:
+               # p = "an*"
+            # elif " a u" in k:
+               # p = "an*"
+            # elif " a i" in k:
+               # p = "an*"
             elif "your a " in k: # your/there
                 p = "you're*"
             elif "your an " in k:
