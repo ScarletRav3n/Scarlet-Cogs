@@ -23,7 +23,9 @@ class Grammar:
         f = on_off.lower()
         global b
         if f == "on":
-            await self.bot.say("Deleting carets is now ON. \n`Make sure I have the 'manage_messages' permission`")
+            await self.bot.say("Deleting carets is now ON." +
+                               "\n`Make sure I have the 'manage_messages' " +
+                               "permission`")
             b = True
         elif f == "off":
             await self.bot.say("Deleting carets is now OFF.")
@@ -37,16 +39,16 @@ class Grammar:
             if x in m.content:
                 return
             # elif " a a" in k: # a/an
-               # p = "an*"
+            #    p = "an*"
             # elif " a e" in k:
-               # p = "an*"
+            #    p = "an*"
             # elif " a o" in k:
-               # p = "an*"
+            #    p = "an*"
             # elif " a u" in k:
-               # p = "an*"
+            #    p = "an*"
             # elif " a i" in k:
-               # p = "an*"
-            elif "your a " in k: # your/there
+            #    p = "an*"
+            elif "your a " in k:  # your/there
                 p = "you're*"
             elif "your an " in k:
                 p = "you're*"
@@ -62,13 +64,13 @@ class Grammar:
                 p = "there's*"
             elif "theres an " in k:
                 p = "there's*"
-            elif "tommorrow" in k: # spelling
+            elif "tommorrow" in k:  # spelling
                 p = "tomorrow*"
             elif "begining" in k:
                 p = "beginning*"
             elif "litteral" in k:
                 p = "literal*"
-            elif "dont " in k: # aphostrophes
+            elif "dont " in k:  # aphostrophes
                 p = "don't*"
             elif "didnt " in k:
                 p = "didn't*"
@@ -80,7 +82,15 @@ class Grammar:
                 p = "isn't*"
             elif "its not" in k:
                 p = "it's*"
-            elif "^" in m.content: # caret
+            elif "laif" in k:  # stupid broken english patch start here
+                p = "life*"
+            elif "stronk" in k:
+                p = "strong*"
+            elif "noice" in k:
+                p = "nice*"
+            elif "lood" in k:
+                p = "lewd*"
+            elif "^" in m.content:  # caret
                 if b is True:
                     await self.bot.delete_message(m)
                 return
