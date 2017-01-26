@@ -35,8 +35,8 @@ class Grammar:
 
     async def on_message(self, m):
         k = m.content.lower()
-        for x in bot.settings.get_prefixes:
-            if bot.settings.get_prefixes in m.content:
+        for x in self.bot.settings.get_prefixes:
+            if self.bot.settings.get_prefixes in m.content:
                 return
             # elif " a a" in k: # a/an
             #    p = "an*"
