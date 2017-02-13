@@ -64,12 +64,6 @@ class Grammar:
                 p = "there's*"
             elif "theres an " in k:
                 p = "there's*"
-            elif "tommorrow" in k:  # spelling
-                p = "tomorrow*"
-            elif "begining" in k:
-                p = "beginning*"
-            elif "litteral" in k:
-                p = "literal*"
             elif "dont " in k:  # aphostrophes
                 p = "don't*"
             elif "didnt " in k:
@@ -90,6 +84,22 @@ class Grammar:
                 p = "nice*"
             elif "lood" in k:
                 p = "lewd*"
+            elif "tommorrow" in k:
+                p = "tomorrow*"
+            elif "begining" in k:
+                p = "beginning*"
+            elif "litteral" in k:
+                p = "literal*"
+            elif "rediculous" in k:
+                p = "ridiculous*"
+            elif "defiantly" in k:
+                p = "definitely*"
+            elif "definately" in k:
+                p = "definitely*"
+            elif "definitly" in k:
+                p = "definitely*"
+            elif "becuase" in k:
+                p = "because*"
             elif "^" in m.content:  # caret
                 if b is True:
                     await self.bot.delete_message(m)
