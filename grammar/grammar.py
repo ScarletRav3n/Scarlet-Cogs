@@ -6,6 +6,7 @@ from cogs.utils import checks
 __author__ = "ScarletRav3n"
 
 # TODO: Find a better way to trigger a/an's
+# TODO: Fix 'p' reference before assignment
 
 b = False
 
@@ -35,8 +36,9 @@ class Grammar:
 
     async def on_message(self, m):
         k = m.content.lower()
-        for x in self.bot.settings.get_prefixes:
-            if self.bot.settings.get_prefixes in m.content:
+        global b
+        for x in self.bot.settings.get_prefixes(m.server):
+            if m.content.startswith(x):
                 return
             # elif " a a" in k: # a/an
             #    p = "an*"
@@ -104,7 +106,7 @@ class Grammar:
                 if b is True:
                     await self.bot.delete_message(m)
                 return
-            await self.bot.send_message(m.channel, p)
+        await self.bot.send_message(m.channel, p)
 
 
 def setup(bot):
