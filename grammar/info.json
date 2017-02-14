@@ -2,6 +2,7 @@
     "AUTHOR" : "ScarletRaven",
     "DESCRIPTION" : "Tells users the appropriate grammar to use",
     "DISABLED" : false,
+    "TAGS" : ["fun", "utility", "automated", "moderation"],
     "INSTALL_MSG" : "The bot will correct mistakes such as 'your a butt'. \nUse `[p]grammar` if you don't want ^'s to get deleted. \n Of course make sure the bot has the `manage_messages` perm",
     "NAME" : "Grammar",
     "SHORT" : "Fix those mistakes"
