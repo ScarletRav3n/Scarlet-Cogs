@@ -6,7 +6,6 @@ from cogs.utils import checks
 __author__ = "ScarletRav3n"
 
 # TODO: Find a better way to trigger a/an's
-# TODO: Fix 'p' reference before assignment
 
 b = False
 
@@ -38,75 +37,80 @@ class Grammar:
         k = m.content.lower()
         global b
         for x in self.bot.settings.get_prefixes(m.server):
-            if m.content.startswith(x):
-                return
-            # elif " a a" in k: # a/an
-            #    p = "an*"
-            # elif " a e" in k:
-            #    p = "an*"
-            # elif " a o" in k:
-            #    p = "an*"
-            # elif " a u" in k:
-            #    p = "an*"
-            # elif " a i" in k:
-            #    p = "an*"
-            elif "your a " in k:  # your/there
-                p = "you're*"
-            elif "your an " in k:
-                p = "you're*"
-            elif "your on " in k:
-                p = "you're*"
-            elif "their not" in k:
-                p = "they're*"
-            elif "their a " in k:
-                p = "they're*"
-            elif "their an " in k:
-                p = "they're*"
-            elif "theres a " in k:
-                p = "there's*"
-            elif "theres an " in k:
-                p = "there's*"
-            elif "dont " in k:  # aphostrophes
-                p = "don't*"
-            elif "didnt " in k:
-                p = "didn't*"
-            elif "cant " in k:
-                p = "can't*"
-            elif "wont " in k:
-                p = "won't*"
-            elif "isnt " in k:
-                p = "isn't*"
-            elif "its not" in k:
-                p = "it's*"
-            elif "laif" in k:  # stupid broken english patch start here
-                p = "life*"
-            elif "stronk" in k:
-                p = "strong*"
-            elif "noice" in k:
-                p = "nice*"
-            elif "lood" in k:
-                p = "lewd*"
-            elif "tommorrow" in k:
-                p = "tomorrow*"
-            elif "begining" in k:
-                p = "beginning*"
-            elif "litteral" in k:
-                p = "literal*"
-            elif "rediculous" in k:
-                p = "ridiculous*"
-            elif "defiantly" in k:
-                p = "definitely*"
-            elif "definately" in k:
-                p = "definitely*"
-            elif "definitly" in k:
-                p = "definitely*"
-            elif "becuase" in k:
-                p = "because*"
-            elif "^" in m.content:  # caret
-                if b is True:
-                    await self.bot.delete_message(m)
-                return
-        await self.bot.send_message(m.channel, p)
+            if m.author != self.bot.user:
+                if m.content.startswith(x):
+                    return
+                # elif " a a" in k: # a/an
+                #    p = "an*"
+                # elif " a e" in k:
+                #    p = "an*"
+                # elif " a o" in k:
+                #    p = "an*"
+                # elif " a u" in k:
+                #    p = "an*"
+                # elif " a i" in k:
+                #    p = "an*"
+                elif "your a " in k:  # your/there
+                    p = "you're*"
+                elif "your an " in k:
+                    p = "you're*"
+                elif "your on " in k:
+                    p = "you're*"
+                elif "their not" in k:
+                    p = "they're*"
+                elif "their a " in k:
+                    p = "they're*"
+                elif "their an " in k:
+                    p = "they're*"
+                elif "theres a " in k:
+                    p = "there's*"
+                elif "theres an " in k:
+                    p = "there's*"
+                elif "dont " in k:  # apostrophes
+                    p = "don't*"
+                elif "didnt " in k:
+                    p = "didn't*"
+                elif "cant " in k:
+                    p = "can't*"
+                elif "wont " in k:
+                    p = "won't*"
+                elif "isnt " in k:
+                    p = "isn't*"
+                elif "its not" in k:
+                    p = "it's*"
+                elif "laif" in k:  # stupid broken english patch start here
+                    p = "life*"
+                elif "stronk" in k:
+                    p = "strong*"
+                elif "noice" in k:
+                    p = "nice*"
+                elif "lood" in k:
+                    p = "lewd*"
+                elif "tommorrow" in k:
+                    p = "tomorrow*"
+                elif "tomorow" in k:
+                    p = "tomorrow*"
+                elif "begining" in k:
+                    p = "beginning*"
+                elif "litteral" in k:
+                    p = "literal*"
+                elif "rediculous" in k:
+                    p = "ridiculous*"
+                elif "defiantly" in k:
+                    p = "definitely*"
+                elif "definately" in k:
+                    p = "definitely*"
+                elif "definitly" in k:
+                    p = "definitely*"
+                elif "becuase" in k:
+                    p = "because*"
+                elif "^" in m.content:  # caret
+                    if b is True:
+                        await self.bot.delete_message(m)
+                    return
+                else:
+                    return
+                await self.bot.send_message(m.channel, p)
 
 
 def setup(bot):
