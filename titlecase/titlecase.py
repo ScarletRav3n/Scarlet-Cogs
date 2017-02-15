@@ -6,7 +6,7 @@ import re
 __author__ = "ScarletRav3n"
 
 
-class CamelCase:
+class TitleCase:
     """Stop people from writing in CamelCase"""
 
     def __init__(self, bot):
@@ -28,9 +28,9 @@ class CamelCase:
                     await self.bot.delete_message(m)
                 except:
                     pass
-                await self.bot.send_message(m.channel, p + "\nPlease refrain from using CamelCase")
+                await self.bot.send_message(m.channel, p + "\nPlease refrain from using TitleCase")
 
 
 def setup(bot):
-    n = CamelCase(bot)
+    n = TitleCase(bot)
     bot.add_cog(n)

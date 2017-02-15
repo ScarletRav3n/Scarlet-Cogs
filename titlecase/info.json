@@ -1,0 +1,9 @@
+{
+    "AUTHOR" : "ScarletRaven",
+    "DESCRIPTION" : "Tells users to stop using TitleCase. Don't You Love Sentences Like This?",
+    "DISABLED" : false,
+    "TAGS" : ["fun", "utility", "automated", "moderation"],
+    "INSTALL_MSG" : "The bot will correct the mistake that is TitleCase. \n Make sure the bot has the `manage_messages` perm",
+    "NAME" : "TitleCase",
+    "SHORT" : "Stop TitleCase Sentences"
+}
