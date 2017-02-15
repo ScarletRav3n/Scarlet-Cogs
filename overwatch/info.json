@@ -1,9 +1,9 @@
 {
     "AUTHOR" : "ScarletRaven",
-    "DESCRIPTION" : "Player Statistics for Overwatch. This is a BETA cog",
+    "DESCRIPTION" : "Player Statistics for Overwatch. Pulls up your average stats and more",
     "DISABLED" : false,
     "TAGS" : ["fun", "tool", "gaming", "api", "statistics"],
-    "INSTALL_MSG" : "This cog is meant to view player statistics. \nCurrently the cog is in BETA.",
+    "INSTALL_MSG" : "This cog is meant to view player statistics. \nIt is caps-sensitive.",
     "NAME" : "Overwatch",
     "SHORT" : "Overwatch Statistics"
 }

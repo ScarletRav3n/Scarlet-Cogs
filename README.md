@@ -22,8 +22,13 @@ Cogs for 26's [Red DiscordBot](https://github.com/Twentysix26/Red-DiscordBot)
 * "your a butt" will now get "you're*" as a response.
 * Optional: Can delete messages starting with ^'s.
 
+#### Overwatch Cog
+* Pulls player stats
+* Tied together in a fancy embed
+* Supports consoles as well
+
 #### TitleCase Cog
-* Notifies users writing sentences in TitleCase
+* Notifies users writing sentences in TitleCase/CamelCase
 * Don't You Hate Sentences Like This?
 
 If there is anything you would like to have added, please let me know on Discord!
