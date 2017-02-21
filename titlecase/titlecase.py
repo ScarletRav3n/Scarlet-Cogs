@@ -14,21 +14,23 @@ class TitleCase:
 
     async def on_message(self, m):
         pattern = re.compile(r'''(?x)(\b
-            [A-Z](\S*?)[ ]
-            [A-Z](\S*?)[ ]
-            [A-Z](\S*?)[ ]
-            [A-Z](\S*?)
+            [A-Z][a-z](\S*?)[ ]
+            [A-Z][a-z](\S*?)[ ]
+            [A-Z][a-z](\S*?)[ ]
+            [A-Z][a-z](\S*?)[ ]
+            [A-Z][a-z](\S*?)
             \b)''')
-        c = lambda s: [u[0] for u in re.findall(pattern, s)]
-        p = str(c(m.content))
+
+        def c(s): return [u[0] for u in re.findall(pattern, s)]
+        trigger = str(c(m.content))
         if m.author != self.bot.user:
-            if p != "[]":
-                p = str(m.author.name) + ' wrote *"' + p[2:-2] + '"*'
+            if trigger != "[]":
+                trigger = str(m.author.name) + ' wrote *"' + trigger[2:-2] + '"*'
                 try:
                     await self.bot.delete_message(m)
-                except:
-                    pass
-                await self.bot.send_message(m.channel, p + "\nPlease refrain from using TitleCase")
+                except discord.errors.Forbidden:
+                    await self.bot.send_message(m.channel, "Wanted to delete mid {} but no permissions".format(m.id))
+                await self.bot.send_message(m.channel, trigger + "\nPlease refrain from using TitleCase")
 
 
 def setup(bot):

@@ -7,110 +7,113 @@ __author__ = "ScarletRav3n"
 
 # TODO: Find a better way to trigger a/an's
 
-b = False
-
 
 class Grammar:
     """Fix those mistakes"""
 
     def __init__(self, bot):
         self.bot = bot
+        self.toggle = False
 
     @commands.command()
     @checks.admin_or_permissions(administrator=True)
     async def grammar(self, on_off: str):
         """Toggle ^ caret"""
-        f = on_off.lower()
-        global b
-        if f == "on":
+        if on_off.lower() == "on":
             await self.bot.say("Deleting carets is now ON." +
                                "\n`Make sure I have the 'manage_messages' " +
                                "permission`")
-            b = True
-        elif f == "off":
+            self.toggle = True
+        elif on_off.lower() == "off":
             await self.bot.say("Deleting carets is now OFF.")
-            b = False
+            self.toggle = False
         else:
             await self.bot.say("I need an ON or OFF state.")
 
     async def on_message(self, m):
-        k = m.content.lower()
-        global b
+        str_m = m.content.lower()
         for x in self.bot.settings.get_prefixes(m.server):
             if m.author != self.bot.user:
                 if m.content.startswith(x):
                     return
-                # elif " a a" in k: # a/an
-                #    p = "an*"
-                # elif " a e" in k:
-                #    p = "an*"
-                # elif " a o" in k:
-                #    p = "an*"
-                # elif " a u" in k:
-                #    p = "an*"
-                # elif " a i" in k:
-                #    p = "an*"
-                elif "your a " in k:  # your/there
-                    p = "you're*"
-                elif "your an " in k:
-                    p = "you're*"
-                elif "your on " in k:
-                    p = "you're*"
-                elif "their not" in k:
-                    p = "they're*"
-                elif "their a " in k:
-                    p = "they're*"
-                elif "their an " in k:
-                    p = "they're*"
-                elif "theres a " in k:
-                    p = "there's*"
-                elif "theres an " in k:
-                    p = "there's*"
-                elif "dont " in k:  # apostrophes
-                    p = "don't*"
-                elif "didnt " in k:
-                    p = "didn't*"
-                elif "cant " in k:
-                    p = "can't*"
-                elif "wont " in k:
-                    p = "won't*"
-                elif "isnt " in k:
-                    p = "isn't*"
-                elif "its not" in k:
-                    p = "it's*"
-                elif "laif" in k:  # stupid broken english patch start here
-                    p = "life*"
-                elif "stronk" in k:
-                    p = "strong*"
-                elif "noice" in k:
-                    p = "nice*"
-                elif "lood" in k:
-                    p = "lewd*"
-                elif "tommorrow" in k:
-                    p = "tomorrow*"
-                elif "tomorow" in k:
-                    p = "tomorrow*"
-                elif "begining" in k:
-                    p = "beginning*"
-                elif "litteral" in k:
-                    p = "literal*"
-                elif "rediculous" in k:
-                    p = "ridiculous*"
-                elif "defiantly" in k:
-                    p = "definitely*"
-                elif "definately" in k:
-                    p = "definitely*"
-                elif "definitly" in k:
-                    p = "definitely*"
-                elif "becuase" in k:
-                    p = "because*"
+                # elif " a a" in str_m: # a/an
+                #    fix = "an*"
+                # elif " a e" in str_m:
+                #    fix = "an*"
+                # elif " a o" in str_m:
+                #    fix = "an*"
+                # elif " a u" in str_m:
+                #    fix = "an*"
+                # elif " a i" in str_m:
+                #    fix = "an*"
+                elif "your a " in str_m:  # your/there
+                    fix = "you're*"
+                elif "your an " in str_m:
+                    fix = "you're*"
+                elif "your on " in str_m:
+                    fix = "you're*"
+                elif "their not" in str_m:
+                    fix = "they're*"
+                elif "their a " in str_m:
+                    fix = "they're*"
+                elif "their an " in str_m:
+                    fix = "they're*"
+                elif "theres a " in str_m:
+                    fix = "there's*"
+                elif "theres an " in str_m:
+                    fix = "there's*"
+                elif "dont " in str_m:  # apostrophes
+                    fix = "don't*"
+                elif "didnt " in str_m:
+                    fix = "didn't*"
+                elif "cant " in str_m:
+                    fix = "can't*"
+                elif "wont " in str_m:
+                    fix = "won't*"
+                elif "isnt " in str_m:
+                    fix = "isn't*"
+                elif "its not" in str_m:
+                    fix = "it's*"
+                elif "laif" in str_m:  # stupid broken english patch start here
+                    fix = "life*"
+                elif "stronk" in str_m:
+                    fix = "strong*"
+                elif "noice" in str_m:
+                    fix = "nice*"
+                elif "lood" in str_m:
+                    fix = "lewd*"
+                elif "lern" in str_m:
+                    fix = "learn*"
+                elif "spel" in str_m:
+                    fix = "spell*"
+                elif "tommorrow" in str_m:  # other english words
+                    fix = "tomorrow*"
+                elif "tomorow" in str_m:
+                    fix = "tomorrow*"
+                elif "begining" in str_m:
+                    fix = "beginning*"
+                elif "litteral" in str_m:
+                    fix = "literal*"
+                elif "rediculous" in str_m:
+                    fix = "ridiculous*"
+                elif "defiantly" in str_m:
+                    fix = "definitely*"
+                elif "definately" in str_m:
+                    fix = "definitely*"
+                elif "definitly" in str_m:
+                    fix = "definitely*"
+                elif "becuase" in str_m:
+                    fix = "because*"
                 elif "^" in m.content:  # caret
-                    if b is True:
-                        await self.bot.delete_message(m)
+                    if self.toggle is True:
+                        try:
+                            await self.bot.delete_message(m)
+                        except discord.errors.Forbidden:
+                            await self.bot.say("Wanted to delete mid {} but no permissions".format(m.id))
                     return
                 else:
                     return
-                await self.bot.send_message(m.channel, p)
+                await self.bot.send_message(m.channel, fix)
 
 
 def setup(bot):

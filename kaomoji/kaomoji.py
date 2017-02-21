@@ -13,60 +13,63 @@ class Kaomoji:
 
     def __init__(self, bot):
         self.bot = bot
+        self.toggle = False
         self.feelings = "data/kaomoji/feelings.json"
         self.system = dataIO.load_json(self.feelings)
-        # self.kaomoji = `data/kaomoji`
 
     def save_emotes(self):
         dataIO.save_json(self.feelings, self.system)
         dataIO.is_valid_json("data/kaomoji/feelings.json")
 
-    @commands.group(aliases=["kao"], invoke_without_command=True)
-    async def kaomoji(self, category: str, n: int=None):
-        c = category.lower()
-        l = len(self.system.get(c, []))
-        # global b
-        if c in self.system:
+    @commands.group(aliases=["kao"], invoke_without_command=True, pass_context=True)
+    async def kaomoji(self, ctx, *, category: str, n: int=None):
+        str_category = category.lower()
+        m = ctx.message
+        amount = len(self.system.get(str_category, []))
+        if str_category in self.system:
             if n is None:
-                await self.bot.say(rnd(self.system[c]))
-                # print(b)
+                await self.bot.say(rnd(self.system[str_category]))
             else:
-                if n > l:
-                    await self.bot.say("The highest kaomoji count for " + c + " is " + str(l) + ". \n(╯°□°）╯︵ ┻━┻")
+                if n > amount:
+                    await self.bot.say("The highest kaomoji count for " + str_category + " is "
+                                       + str(amount) + ". \n(╯°□°）╯︵ ┻━┻")
                 else:
-                    await self.bot.say(self.system[c][n])
-            print(c + " kaomoji called")
+                    await self.bot.say(self.system[str_category][n])
+            print(str_category + " kaomoji called")
         else:
-            await self.bot.say(c + " category couldn't be found. \n¯\_(ツ)_/¯")
+            await self.bot.say(str_category + " category couldn't be found. \n¯\_(ツ)_/¯")
+        if self.toggle is True:
+            try:
+                await self.bot.delete_message(m)
+                await self.bot.say("Deleted command msg {}".format(m.id))
+            except discord.errors.Forbidden:
+                await self.bot.say("Wanted to delete mid {} but no permissions".format(m.id))
 
     @kaomoji.command(name="list")
     async def _list(self):
         """Shows all categories"""
-        k = [i for i in self.system]
-        await self.bot.say("```" + ', '.join(k) + "```")
+        categories = [i for i in self.system]
+        await self.bot.say("```" + ', '.join(categories) + "```")
         print("Kaomoji list called")
 
     @kaomoji.command()
     async def count(self, category: str):
         """Displays count per category"""
-        c = category.lower()
-        l = len(self.system[c])
-        await self.bot.say("There are " + str(l) + " kaomojis for " + c)
+        str_category = category.lower()
+        amount = len(self.system[str_category])
+        await self.bot.say("There are " + str(amount) + " kaomojis for " + str_category)
 
-    # ----- cleanup function ------
-    # @kaomoji.command()
-    # async def cleaner(self, on_off: str):
-    #     """Cleans up your commands"""
-    #     global b
-    #     _b = on_off.lower()
-    #     if _b == "on":
-    #         await self.bot.say("Cleaner is now ON ")
-    #         b = True
-    #     elif _b == "off":
-    #         await self.bot.say("Cleaner is now OFF ")
-    #         b = False
-    #     else:
-    #         await self.bot.say("It needs an ON or OFF state")
+    @kaomoji.command()
+    async def cleaner(self, on_off: str):
+        """Cleans up your commands"""
+        if on_off.lower() == "on":
+            await self.bot.say("Deleting commands is now ON ")
+            self.toggle = True
+        elif on_off.lower() == "off":
+            await self.bot.say("Deleting commands is now OFF ")
+            self.toggle = False
+        else:
+            await self.bot.say("It needs an ON or OFF state")
 
 
 def check_folders():

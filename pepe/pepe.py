@@ -13,6 +13,7 @@ class Pepe:
 
     def __init__(self, bot):
         self.bot = bot
+        self.toggle = False
         self.pepe = "data/pepe/pepe.json"
         self.system = dataIO.load_json(self.pepe)
         # self.pepe = `data/pepe`
@@ -21,22 +22,41 @@ class Pepe:
         dataIO.save_json(self.pepe, self.system)
         dataIO.is_valid_json("data/pepe/pepe.json")
 
-    @commands.group(aliases=["pepe"], invoke_without_command=True)
-    async def _pepe(self, n: int=None):
-        l = len(self.system["pepes"])
+    @commands.group(aliases=["pepe"], invoke_without_command=True, pass_context=True)
+    async def _pepe(self, ctx, *, n: int=None):
+        amount = len(self.system["pepes"])
+        m = ctx.message
         if n is None:
             await self.bot.say(rnd(self.system["pepes"]))
         else:
-            if n > l:
-                await self.bot.say("The highest pepe count is " + str(l) + ". \n(╯°□°）╯︵ ┻━┻")
+            if n > amount:
+                await self.bot.say("The highest pepe count is " + str(amount) + ". \n(╯°□°）╯︵ ┻━┻")
             else:
                 await self.bot.say(self.system["pepes"][n])
+        if self.toggle is True:
+            try:
+                await self.bot.delete_message(m)
+                await self.bot.say("Deleted command msg {}".format(m.id))
+            except discord.errors.Forbidden:
+                await self.bot.say("Wanted to delete mid {} but no permissions".format(m.id))
 
     @_pepe.command()
     async def count(self):
         """Displays total count"""
-        l = len(self.system["pepes"])
-        await self.bot.say("There are " + str(l) + " pepes")
+        amount = len(self.system["pepes"])
+        await self.bot.say("There are " + str(amount) + " pepes")
+
+    @_pepe.command()
+    async def cleaner(self, on_off: str):
+        """Cleans up your commands"""
+        if on_off.lower() == "on":
+            await self.bot.say("Deleting commands is now ON ")
+            self.toggle = True
+        elif on_off.lower() == "off":
+            await self.bot.say("Deleting commands is now OFF ")
+            self.toggle = False
+        else:
+            await self.bot.say("It needs an ON or OFF state")
 
 
 def check_folders():
