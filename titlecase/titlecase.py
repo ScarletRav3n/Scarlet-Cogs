@@ -23,7 +23,7 @@ class TitleCase:
 
         def c(s): return [u[0] for u in re.findall(pattern, s)]
         trigger = str(c(m.content))
-        if m.author != self.bot.user:
+        if m.author.bot is not True:
             if trigger != "[]":
                 trigger = str(m.author.name) + ' wrote *"' + trigger[2:-2] + '"*'
                 try:

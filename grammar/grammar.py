@@ -33,7 +33,7 @@ class Grammar:
     async def on_message(self, m):
         str_m = m.content.lower()
         for x in self.bot.settings.get_prefixes(m.server):
-            if m.author != self.bot.user:
+            if m.author.bot is not True:
                 if m.content.startswith(x):
                     return
                 # elif " a a" in str_m: # a/an
@@ -82,6 +82,10 @@ class Grammar:
                     fix = "nice*"
                 elif "lood" in str_m:
                     fix = "lewd*"
+                elif "taht" in str_m:
+                    fix = "that*"
+                elif "nawt" in str_m:
+                    fix = "not*"
                 elif "lern" in str_m:
                     fix = "learn*"
                 elif "spel" in str_m:
@@ -102,6 +106,8 @@ class Grammar:
                     fix = "definitely*"
                 elif "definitly" in str_m:
                     fix = "definitely*"
+                elif "multible" in str_m:
+                    fix = "multiple*"
                 elif "becuase" in str_m:
                     fix = "because*"
                 elif "^" in m.content:  # caret
