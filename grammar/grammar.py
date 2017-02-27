@@ -90,6 +90,12 @@ class Grammar:
                     fix = "learn*"
                 elif "spel" in str_m:
                     fix = "spell*"
+                elif "rood" in str_m:
+                    fix = "rude*"
+                # elif "gud" in str_m: # I CAN'T BELIEVE THIS IS REJECTED
+                    # fix = "good*" # IN FAVOR OF A MEME
+                elif "stahp" in str_m:
+                    fix = "stop*"
                 elif "tommorrow" in str_m:  # other english words
                     fix = "tomorrow*"
                 elif "tomorow" in str_m:
@@ -110,6 +116,20 @@ class Grammar:
                     fix = "multiple*"
                 elif "becuase" in str_m:
                     fix = "because*"
+                elif "mispell" in str_m:
+                    fix = "misspell*"
+                elif "indispensible" in str_m:
+                    fix = "indispensable*"
+                elif "personel" in str_m:
+                    fix = "personnel*"
+                elif "recieve" in str_m:
+                    fix = "receive*"
+                elif "treshold" in str_m:
+                    fix = "threshold*"
+                elif "untill" in str_m:
+                    fix = "until*"
+                elif "wierd" in str_m:
+                    fix = "weird*"
                 elif "^" in m.content:  # caret
                     if self.toggle is True:
                         try:
