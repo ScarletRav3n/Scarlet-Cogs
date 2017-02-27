@@ -92,8 +92,8 @@ class Grammar:
                     fix = "spell*"
                 elif "rood" in str_m:
                     fix = "rude*"
-                elif "gud" in str_m:
-                    fix = "good*"
+                # elif "gud" in str_m: # I CAN'T BELIEVE THIS IS REJECTED
+                    # fix = "good*" # IN FAVOR OF A MEME
                 elif "stahp" in str_m:
                     fix = "stop*"
                 elif "tommorrow" in str_m:  # other english words
