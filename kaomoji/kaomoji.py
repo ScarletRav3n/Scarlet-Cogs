@@ -62,14 +62,12 @@ class Kaomoji:
     @kaomoji.command()
     async def cleaner(self, on_off: str):
         """Cleans up your commands"""
-        if on_off.lower() == "on":
-            await self.bot.say("Deleting commands is now ON ")
+        if on_off is True:
+            await self.bot.say('Deleting commands is now ON.')
             self.toggle = True
-        elif on_off.lower() == "off":
-            await self.bot.say("Deleting commands is now OFF ")
-            self.toggle = False
         else:
-            await self.bot.say("It needs an ON or OFF state")
+            await self.bot.say('Deleting commands is now OFF.')
+            self.toggle = False
 
 
 def check_folders():

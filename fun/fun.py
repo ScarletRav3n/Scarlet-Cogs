@@ -21,14 +21,12 @@ class Fun:
     @checks.admin_or_permissions(administrator=True)
     async def fun(self, on_off: str):
         """Toggle counting for fun-based commands"""
-        if on_off.lower() == "on":
-            await self.bot.say("Counting counter is now ON.")
+        if on_off is True:
+            await self.bot.say('Counting counter is now ON.')
             self.toggle = True
-        elif on_off.lower() == "off":
-            await self.bot.say("Counting counter is now OFF.")
-            self.toggle = False
         else:
-            await self.bot.say("I need an ON or OFF state.")
+            await self.bot.say('Counting counter is now OFF.')
+            self.toggle = False
 
     @commands.command(pass_context=True)
     async def sword(self, ctx, *, user: discord.Member):

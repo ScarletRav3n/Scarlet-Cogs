@@ -11,6 +11,8 @@ __author__ = "ScarletRav3n"
 
 # TODO: Find a better way to trigger a/an's
 # TODO: Allow self added fixes?
+# TODO: Configure ignore list to be permanent
+# TODO: Ignore channels/servers
 
 
 class Grammar:
@@ -19,6 +21,7 @@ class Grammar:
     def __init__(self, bot):
         self.bot = bot
         self.toggle = False
+        self.ignore = []
         self.grammar = "data/grammar/grammar.json"
         self.system = dataIO.load_json(self.grammar)
 
@@ -26,35 +29,48 @@ class Grammar:
         dataIO.save_json(self.grammar, self.system)
         dataIO.is_valid_json("data/grammar/grammar.json")
 
-    @commands.command()
+    @commands.group(name="grammar", pass_context=True)
     @checks.admin_or_permissions(administrator=True)
-    async def grammar(self, on_off: str):
+    async def _grammar(self, ctx):
+        """Grammar commands"""
+        if ctx.invoked_subcommand is None:
+            await self.bot.send_cmd_help(ctx)
+
+    @_grammar.command(name="ignore")
+    async def _ignore(self, trigger: str):
+        """Ignores fixes that may be annoying"""
+        self.ignore.append(trigger)
+        await self.bot.say('"' + trigger + '" is now being ignored.')
+
+    @_grammar.command(name="list")
+    async def _list(self):
+        """Pull up grammar being ignored"""
+        await self.bot.say(str(self.ignore).strip('[]') + '\nare all being ignored.')
+
+    @_grammar.command()
+    async def caret(self, on_off: bool):
         """Toggle ^ caret deletion"""
-        if on_off.lower() == "on":
-            await self.bot.say("Deleting carets is now ON." +
-                               "\n`Make sure I have the 'manage_messages' " +
-                               "permission`")
+        if on_off is True:
+            await self.bot.say('Deleting carets is now ON.')
             self.toggle = True
-        elif on_off.lower() == "off":
-            await self.bot.say("Deleting carets is now OFF.")
-            self.toggle = False
         else:
-            await self.bot.say("I need an ON or OFF state.")
+            await self.bot.say('Deleting carets is now OFF.')
+            self.toggle = False
 
     async def on_message(self, m):
         for x in self.bot.settings.get_prefixes(m.server):
-            if m.author.bot is False:
-                if m.content.startswith(x):
-                    return
-                for k, v in self.system.items():
-                    if re.findall(r'\b' + k + r'\b', m.content.lower()):
+            if m.author.bot is False and m.content.startswith(x):
+                return
+            for k, v in self.system.items():
+                if re.findall(r'\b' + k + r'\b', m.content.lower()):
+                    if k not in self.ignore:
                         await self.bot.send_message(m.channel, v)
-                    elif "^" in m.content:  # caret
-                        if self.toggle is True:
-                            try:
-                                await self.bot.delete_message(m)
-                            except discord.errors.Forbidden:
-                                await self.bot.say("Wanted to delete mid {} but no permissions".format(m.id))
+                elif "^" in m.content:  # caret
+                    if self.toggle is True:
+                        try:
+                            await self.bot.delete_message(m)
+                        except discord.errors.Forbidden:
+                            await self.bot.say('Wanted to delete mid {} but no permissions'.format(m.id))
 
 
 def check_folders():
