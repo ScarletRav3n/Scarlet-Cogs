@@ -14,7 +14,7 @@ class TitleCase:
 
     async def on_message(self, m):
         pattern = re.compile(r'''(?x)(\b
-            [A-Z][a-z](\S*?)[ ]
+            [A-Z](\S*?)[ ]
             [A-Z][a-z](\S*?)[ ]
             [A-Z][a-z](\S*?)[ ]
             [A-Z][a-z](\S*?)[ ]
@@ -25,7 +25,7 @@ class TitleCase:
         trigger = str(c(m.content))
         if m.author.bot is False:
             if trigger != "[]":
-                trigger = str(m.author.name) + ' wrote *"' + trigger[2:-2] + '--"*'
+                trigger = str(m.author.name) + ' wrote *"' + trigger[2:-2] + '..."*'
                 try:
                     await self.bot.delete_message(m)
                 except discord.errors.Forbidden:
