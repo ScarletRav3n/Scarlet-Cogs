@@ -1,0 +1,31 @@
+{
+  "ping": [
+    "You're too slow!",
+    "fok u want??"
+  ],
+  "version": [
+    "Do I need the latest tech?",
+    "Oh Shiny"
+  ],
+  "unmute": [
+    "Permission to speak: Granted"
+  ],
+  "unignore": [
+    "Can you hear me now?"
+  ],
+  "urban": [
+    "Don't think I'm happy about this"
+  ],
+  "userinfo": [
+    "Quite the looker, aren't I?"
+  ],
+  "serverinfo": [
+    "This is my home"
+  ],
+  "lmgtfy": [
+    "This helps...right?"
+  ],
+  "leaderboard": [
+    "Am I in here?"
+  ]
+}
