@@ -1,6 +1,5 @@
 # noinspection PyUnresolvedReferences
 import discord
-from discord.ext import commands
 import re
 
 __author__ = "ScarletRav3n"
@@ -23,14 +22,16 @@ class TitleCase:
 
         def c(s): return [u[0] for u in re.findall(pattern, s)]
         trigger = str(c(m.content))
-        if m.author.bot is False:
-            if trigger != "[]":
+        for x in self.bot.settings.get_prefixes(m.server):
+            if m.content.startswith(x):
+                return
+            if m.author.bot is False and trigger != "[]":
                 trigger = str(m.author.name) + ' wrote *"' + trigger[2:-2] + '..."*'
+                await self.bot.send_message(m.channel, trigger + "\nPlease refrain from using titlecase")
                 try:
                     await self.bot.delete_message(m)
                 except discord.errors.Forbidden:
-                    await self.bot.send_message(m.channel, "Wanted to delete mid {} but no permissions".format(m.id))
-                await self.bot.send_message(m.channel, trigger + "\nPlease refrain from using TitleCase")
+                    await self.bot.send_message(m.channel, "(Wanted to delete mid {} but no permissions)".format(m.id))
 
 
 def setup(bot):
