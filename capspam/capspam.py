@@ -23,7 +23,7 @@ class CapSpam:
         def c(s): return [u[0] for u in re.findall(pattern, s)]
         trigger = str(c(m.content))
         for x in self.bot.settings.get_prefixes(m.server):
-            if m.content.startswith(x):
+            if m.content.startswith(x) or m.content.startswith('"') or m.content.startswith('\\'):
                 return
             if m.author.bot is False and trigger != "[]":
                 self.count += 1

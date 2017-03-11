@@ -106,7 +106,7 @@ class Fun:
 
     @commands.command()
     async def calculated(self):
-        self.ndad += ndad
+        self.ndad += 1
         if self.toggle is True:
             count = "\n*This command has been used " + str(self.ndad) + " times.*"
         else:

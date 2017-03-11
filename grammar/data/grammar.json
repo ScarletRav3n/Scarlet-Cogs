@@ -51,6 +51,7 @@
   "becuase": "because*",
   "mispell": "misspell*",
   "occured": "occurred*",
+  "payed": "paid*",
   "indispensible": "indispensable",
   "personel": "personnel*",
   "recieve": "receive*",
@@ -58,6 +59,8 @@
   "untill": "until*",
   "wierd": "weird*",
   "lier": "liar*",
+  "acess": "access*",
+  "mather": "matter*",
   "should of": "should have*",
   "could of": "could have*",
   "would of": "would have*"

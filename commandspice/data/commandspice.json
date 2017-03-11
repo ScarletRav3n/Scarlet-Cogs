@@ -17,7 +17,7 @@
     "Don't think I'm happy about this"
   ],
   "userinfo": [
-    "Quite the looker, aren't I?"
+    "Quite the looker"
   ],
   "serverinfo": [
     "This is my home"
@@ -26,6 +26,10 @@
     "This helps...right?"
   ],
   "leaderboard": [
-    "Am I in here?"
+    "Am I in here?",
+    "Your mother must be so proud"
+  ],
+  "stop": [
+    "Hammer time!"
   ]
 }
