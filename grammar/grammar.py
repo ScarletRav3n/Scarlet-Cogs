@@ -11,8 +11,6 @@ __author__ = "ScarletRav3n"
 
 # TODO: Find a better way to trigger a/an's
 # TODO: Allow self added fixes?
-# TODO: Configure ignore list to be permanent
-# TODO: Ignore channels/servers
 
 
 class Grammar:
@@ -21,13 +19,13 @@ class Grammar:
     def __init__(self, bot):
         self.bot = bot
         self.toggle = False
-        self.ignore = []
-        self.grammar = "data/grammar/grammar.json"
-        self.system = dataIO.load_json(self.grammar)
+        self.grammar = dataIO.load_json("data/grammar/grammar.json")
+        self.ignore = dataIO.load_json("data/grammar/ignorelist.json")
 
     def save_grammar(self):
-        dataIO.save_json(self.grammar, self.system)
+        dataIO.save_json(self.grammar, self.ignore)
         dataIO.is_valid_json("data/grammar/grammar.json")
+        dataIO.is_valid_json("data/grammar/ignorelist.json")
 
     @commands.group(name="grammar", pass_context=True)
     @checks.admin_or_permissions(administrator=True)
@@ -36,16 +34,111 @@ class Grammar:
         if ctx.invoked_subcommand is None:
             await self.bot.send_cmd_help(ctx)
 
-    @_grammar.command(name="ignore")
-    async def _ignore(self, trigger: str):
-        """Ignores fixes that may be annoying"""
-        self.ignore.append(trigger)
-        await self.bot.say('"' + trigger + '" is now being ignored.')
+    @commands.group(name="grammarignore", aliases=["gignore"], pass_context=True)
+    @checks.admin_or_permissions(administrator=True)
+    async def grammar_ignore(self, ctx):
+        """Edit the ignores of a server"""
+        if ctx.invoked_subcommand is None:
+            await self.bot.send_cmd_help(ctx)
+
+    @grammar_ignore.command(name="grammar")
+    async def ignore_grammar(self, trigger: str):
+        """Ignore certain grammar triggers"""
+        if trigger not in self.ignore['GRAMMAR']:
+            self.ignore['GRAMMAR'].append(trigger)
+            dataIO.save_json("data/grammar/ignorelist.json", self.ignore)
+            await self.bot.say('"' + trigger + '" is now in the ignore list.')
+        else:
+            await self.bot.say('"' + trigger + '" is already being ignored.')
+
+    @grammar_ignore.command(name="channel", pass_context=True)
+    async def ignore_channel(self, ctx, channel: discord.Channel=None):
+        """Ignores channel
+
+        Defaults to current one"""
+        current_ch = ctx.message.channel
+        if not channel:
+            if current_ch.id not in self.ignore["CHANNELS"]:
+                self.ignore["CHANNELS"].append(current_ch.id)
+                dataIO.save_json("data/grammar/ignorelist.json", self.ignore)
+                await self.bot.say("Channel added to ignore list.")
+            else:
+                await self.bot.say("Channel already in ignore list.")
+        else:
+            if channel.id not in self.ignore["CHANNELS"]:
+                self.ignore["CHANNELS"].append(channel.id)
+                dataIO.save_json("data/grammar/ignorelist.json", self.ignore)
+                await self.bot.say("Channel added to ignore list.")
+            else:
+                await self.bot.say("Channel already in ignore list.")
+
+    @grammar_ignore.command(name="server", pass_context=True)
+    async def ignore_server(self, ctx):
+        """Ignores current server"""
+        server = ctx.message.server
+        if server.id not in self.ignore["SERVERS"]:
+            self.ignore["SERVERS"].append(server.id)
+            dataIO.save_json("data/grammar/ignorelist.json", self.ignore)
+            await self.bot.say("This server has been added to the ignore list.")
+        else:
+            await self.bot.say("This server is already being ignored.")
+
+    @commands.group(name="grammarunignore", aliases=["gunignore"], pass_context=True, no_pm=True)
+    @checks.admin_or_permissions(administrator=True)
+    async def grammar_unignore(self, ctx):
+        """Removes servers/channels from ignorelist"""
+        if ctx.invoked_subcommand is None:
+            self.bot.send_cmd_help(ctx)
+
+    @grammar_unignore.command(name="grammar")
+    async def unignore_grammar(self, trigger: str):
+        """Unignore certain grammar triggers"""
+        if trigger in self.ignore['GRAMMAR']:
+            self.ignore['GRAMMAR'].remove(trigger)
+            dataIO.save_json("data/grammar/ignorelist.json", self.ignore)
+            await self.bot.say('"' + trigger + '" has been removed from the ignore list.')
+        else:
+            await self.bot.say('"' + trigger + '" is not in the ignore list.')
+
+    @grammar_unignore.command(name="channel", pass_context=True)
+    async def unignore_channel(self, ctx, channel: discord.Channel=None):
+        """Removes channel from ignore list
+
+        Defaults to current one"""
+        current_ch = ctx.message.channel
+        if not channel:
+            if current_ch.id in self.ignore["CHANNELS"]:
+                self.ignore["CHANNELS"].remove(current_ch.id)
+                dataIO.save_json("data/grammar/ignorelist.json", self.ignore)
+                await self.bot.say("This channel has been removed from the ignore list.")
+            else:
+                await self.bot.say("This channel is not in the ignore list.")
+        else:
+            if channel.id in self.ignore["CHANNELS"]:
+                self.ignore["CHANNELS"].remove(channel.id)
+                dataIO.save_json("data/grammar/ignorelist.json", self.ignore)
+                await self.bot.say("Channel removed from ignore list.")
+            else:
+                await self.bot.say("That channel is not in the ignore list.")
+
+    @grammar_unignore.command(name="server", pass_context=True)
+    async def unignore_server(self, ctx):
+        """Removes current server from ignore list"""
+        server = ctx.message.server
+        if server.id in self.ignore["SERVERS"]:
+            self.ignore["SERVERS"].remove(server.id)
+            dataIO.save_json("data/grammar/ignorelist.json", self.ignore)
+            await self.bot.say("This server has been removed from the ignore list.")
+        else:
+            await self.bot.say("This server is not in the ignore list.")
 
     @_grammar.command(name="list")
     async def _list(self):
         """Pull up grammar being ignored"""
-        await self.bot.say(str(self.ignore).strip('[]') + '\nare all being ignored.')
+        if self.ignore['GRAMMAR']:
+            await self.bot.say(str(self.ignore['GRAMMAR']).strip('[]') + '\nare all being ignored.')
+        else:
+            await self.bot.say("There's nothing in the ignore list.")
 
     @_grammar.command()
     async def caret(self, on_off: bool):
@@ -59,11 +152,11 @@ class Grammar:
 
     async def on_message(self, m):
         for x in self.bot.settings.get_prefixes(m.server):
-            if m.author.bot is False and m.content.startswith(x):
+            if m.author.bot is True or m.content.startswith(x):
                 return
-            for k, v in self.system.items():
+            for k, v in self.grammar.items():
                 if re.findall(r'\b' + k + r'\b', m.content.lower()):
-                    if k not in self.ignore:
+                    if k not in self.ignore['GRAMMAR']:
                         await self.bot.send_message(m.channel, v)
                 elif "^" in m.content:  # caret
                     if self.toggle is True:
@@ -81,8 +174,11 @@ def check_folders():
 
 def check_files():
     f = "data/grammar/grammar.json"
+    g = "data/grammar/ignorelist.json"
     if not dataIO.is_valid_json(f):
         print("No such thing as grammar.json...")
+    if not dataIO.is_valid_json(g):
+        print("No such thing as ignorelist.json...")
 
 
 def setup(bot):
