@@ -89,6 +89,7 @@ class Grammar:
         """Removes servers/channels from ignorelist"""
         if ctx.invoked_subcommand is None:
             await self.bot.send_cmd_help(ctx)
+            await self.bot.say(self.count_ignored())
 
     @grammar_unignore.command(name="grammar")
     async def unignore_grammar(self, trigger: str):
