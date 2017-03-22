@@ -10,7 +10,6 @@ __author__ = "ScarletRav3n"
 
 
 # TODO: Find a better way to trigger a/an's
-# TODO: Allow self added fixes?
 
 
 class Grammar:
@@ -40,6 +39,7 @@ class Grammar:
         """Edit the ignores of a server"""
         if ctx.invoked_subcommand is None:
             await self.bot.send_cmd_help(ctx)
+            await self.bot.say(self.count_ignored())
 
     @grammar_ignore.command(name="grammar")
     async def ignore_grammar(self, trigger: str):
@@ -88,7 +88,7 @@ class Grammar:
     async def grammar_unignore(self, ctx):
         """Removes servers/channels from ignorelist"""
         if ctx.invoked_subcommand is None:
-            self.bot.send_cmd_help(ctx)
+            await self.bot.send_cmd_help(ctx)
 
     @grammar_unignore.command(name="grammar")
     async def unignore_grammar(self, trigger: str):
@@ -132,6 +132,12 @@ class Grammar:
         else:
             await self.bot.say("This server is not in the ignore list.")
 
+    def count_ignored(self):
+        msg = "```Currently ignoring:\n"
+        msg += str(len(self.ignore["CHANNELS"])) + " channels\n"
+        msg += str(len(self.ignore["SERVERS"])) + " servers\n```\n"
+        return msg
+
     @_grammar.command(name="list")
     async def _list(self):
         """Pull up grammar being ignored"""
@@ -152,7 +158,8 @@ class Grammar:
 
     async def on_message(self, m):
         for x in self.bot.settings.get_prefixes(m.server):
-            if m.author.bot is True or m.content.startswith(x):
+            if m.author.bot is True or m.content.startswith(x) \
+                    or m.server in self.ignore["SERVERS"] or m.channel in self.ignore["CHANNELS"]:
                 return
             for k, v in self.grammar.items():
                 if re.findall(r'\b' + k + r'\b', m.content.lower()):
