@@ -20,11 +20,6 @@ class CommandSpice:
         dataIO.save_json(self.spice, self.system)
         dataIO.is_valid_json("data/grammar/commandspice.json")
 
-    @commands.command()
-    async def check(self):
-        for k, v in self.system.items():
-            print(k, v)
-
     async def on_command(self, command, ctx):
         m = ctx.message
         if m.author.bot is False:
