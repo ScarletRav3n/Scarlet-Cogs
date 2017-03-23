@@ -124,7 +124,7 @@ class TitleCase:
         trigger = str(c(m.content))
         for x in self.bot.settings.get_prefixes(m.server):
             if m.content.startswith(x) or m.content.startswith('"') or m.content.startswith('\\') \
-                    or m.server in self.ignore["SERVERS"] or m.channel in self.ignore["CHANNELS"]:
+                    or m.server.id in self.ignore["SERVERS"] or m.channel.id in self.ignore["CHANNELS"]:
                 return
             if m.author.bot is False and trigger != "[]":
                 trigger = str(m.author.name) + ' wrote *"' + trigger[2:-2] + '..."*'

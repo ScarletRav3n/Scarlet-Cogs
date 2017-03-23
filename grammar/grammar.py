@@ -161,7 +161,7 @@ class Grammar:
         m = message
         for x in self.bot.settings.get_prefixes(m.server):
             if m.author.bot is True or m.content.startswith(x) \
-                    or m.server in self.ignore["SERVERS"] or m.channel in self.ignore["CHANNELS"]:
+                    or m.server.id in self.ignore["SERVERS"] or m.channel.id in self.ignore["CHANNELS"]:
                 return
             for k, v in self.grammar.items():
                 if re.findall(r'\b' + k + r'\b', m.content.lower()):
