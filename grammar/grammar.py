@@ -157,7 +157,8 @@ class Grammar:
             await self.bot.say('Deleting carets is now OFF.')
             self.toggle = False
 
-    async def on_message(self, m):
+    async def on_message(self, message):
+        m = message
         for x in self.bot.settings.get_prefixes(m.server):
             if m.author.bot is True or m.content.startswith(x) \
                     or m.server in self.ignore["SERVERS"] or m.channel in self.ignore["CHANNELS"]:
