@@ -29,14 +29,14 @@ class CapSpam:
             await self.bot.send_cmd_help(ctx)
 
     @capspam.group(pass_context=True, no_pm=True)
-    async def ignore(self, ctx):
+    async def cignore(self, ctx):
         """Adds servers/channels to ignorelist"""
         if ctx.invoked_subcommand is None:
             await self.bot.send_cmd_help(ctx)
             await self.bot.say(self.count_ignored())
 
-    @ignore.command(name="channel", pass_context=True)
-    async def ignore_channel(self, ctx, channel: discord.Channel=None):
+    @cignore.command(name="channel", pass_context=True)
+    async def cignore_channel(self, ctx, channel: discord.Channel=None):
         """Ignores channel
 
         Defaults to current one"""
@@ -56,8 +56,8 @@ class CapSpam:
             else:
                 await self.bot.say("Channel already in ignore list.")
 
-    @ignore.command(name="server", pass_context=True)
-    async def ignore_server(self, ctx):
+    @cignore.command(name="server", pass_context=True)
+    async def cignore_server(self, ctx):
         """Ignores current server"""
         server = ctx.message.server
         if server.id not in self.ignore["SERVERS"]:
@@ -68,14 +68,14 @@ class CapSpam:
             await self.bot.say("This server is already being ignored.")
 
     @capspam.group(pass_context=True, no_pm=True)
-    async def unignore(self, ctx):
+    async def cunignore(self, ctx):
         """Removes servers/channels from ignorelist"""
         if ctx.invoked_subcommand is None:
             await self.bot.send_cmd_help(ctx)
             await self.bot.say(self.count_ignored())
 
-    @unignore.command(name="channel", pass_context=True)
-    async def unignore_channel(self, ctx, channel: discord.Channel=None):
+    @cunignore.command(name="channel", pass_context=True)
+    async def cunignore_channel(self, ctx, channel: discord.Channel=None):
         """Removes channel from ignore list
 
         Defaults to current one"""
@@ -95,8 +95,8 @@ class CapSpam:
             else:
                 await self.bot.say("That channel is not in the ignore list.")
 
-    @unignore.command(name="server", pass_context=True)
-    async def unignore_server(self, ctx):
+    @cunignore.command(name="server", pass_context=True)
+    async def cunignore_server(self, ctx):
         """Removes current server from ignore list"""
         server = ctx.message.server
         if server.id in self.ignore["SERVERS"]:
