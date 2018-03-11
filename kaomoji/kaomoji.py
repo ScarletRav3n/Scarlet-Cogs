@@ -71,7 +71,7 @@ class Kaomoji:
     @kaomoji.command()
     async def cleaner(self, on_off: str):
         """Cleans up your commands"""
-        if on_off:
+        if on_off in ('on', 'enabled'):
             await self.bot.say('Deleting commands is now ON.')
             self.toggle = True
         else:
