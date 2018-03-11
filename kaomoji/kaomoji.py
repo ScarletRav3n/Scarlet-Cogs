@@ -43,12 +43,6 @@ class Kaomoji:
             print(str_category + " kaomoji called")
         else:
             await self.bot.say(str_category + " category couldn't be found. \n¯\_(ツ)_/¯")
-        if self.toggle is True:
-            try:
-                await self.bot.delete_message(m)
-                await self.bot.say("Deleted command msg {}".format(m.id))
-            except discord.errors.Forbidden:
-                await self.bot.say("Wanted to delete mid {} but no permissions".format(m.id))
 
     @kaomoji.command(name="list")
     async def _list(self):
