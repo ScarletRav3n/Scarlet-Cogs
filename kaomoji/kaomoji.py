@@ -25,6 +25,11 @@ class Kaomoji:
     async def kaomoji(self, ctx, *, category: str, n: int=None):
         str_category = category.lower()
         m = ctx.message
+        if self.toggle:
+            try:
+                await self.bot.delete_message(m)
+            except discord.errors.Forbidden:
+                pass
         amount = len(self.system.get(str_category, []))
         if str_category in self.system:
             if n is None:
@@ -48,6 +53,11 @@ class Kaomoji:
     @kaomoji.command(name="list")
     async def _list(self):
         """Shows all categories"""
+        if self.toggle:
+            try:
+                await self.bot.delete_message(ctx.message)
+            except discord.errors.Forbidden:
+                pass
         categories = [i for i in self.system]
         await self.bot.say("```" + ', '.join(categories) + "```")
         print("Kaomoji list called")
@@ -55,6 +65,11 @@ class Kaomoji:
     @kaomoji.command()
     async def count(self, category: str):
         """Displays count per category"""
+        if self.toggle:
+            try:
+                await self.bot.delete_message(m)
+            except discord.errors.Forbidden:
+                pass
         str_category = category.lower()
         amount = len(self.system[str_category])
         await self.bot.say("There are " + str(amount) + " kaomojis for " + str_category)
@@ -62,7 +77,7 @@ class Kaomoji:
     @kaomoji.command()
     async def cleaner(self, on_off: str):
         """Cleans up your commands"""
-        if on_off is True:
+        if on_off:
             await self.bot.say('Deleting commands is now ON.')
             self.toggle = True
         else:
