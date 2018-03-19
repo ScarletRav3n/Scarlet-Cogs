@@ -44,8 +44,8 @@ class Kaomoji:
         else:
             await self.bot.say(str_category + " category couldn't be found. \n¯\_(ツ)_/¯")
 
-    @kaomoji.command(name="list")
-    async def _list(self):
+    @kaomoji.command(pass_context=True, name="list")
+    async def _list(self, ctx):
         """Shows all categories"""
         if self.toggle:
             try:
@@ -56,12 +56,12 @@ class Kaomoji:
         await self.bot.say("```" + ', '.join(categories) + "```")
         print("Kaomoji list called")
 
-    @kaomoji.command()
-    async def count(self, category: str):
+    @kaomoji.command(pass_context=True)
+    async def count(self, ctx, category: str):
         """Displays count per category"""
         if self.toggle:
             try:
-                await self.bot.delete_message(m)
+                await self.bot.delete_message(ctx.message)
             except discord.errors.Forbidden:
                 pass
         str_category = category.lower()
