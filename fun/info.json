@@ -1,9 +1,8 @@
 {
-    "AUTHOR" : "ScarletRaven",
-    "DESCRIPTION" : "Random assortment of commands",
-    "DISABLED" : false,
-    "TAGS" : ["fun", "random", "games", "community"],
-    "INSTALL_MSG" : "`[p]help Fun` to see the commands available. \nThey're all quite fun!",
-    "NAME" : "Fun",
-    "SHORT" : "Fun Random Commands"
+    "author" : ["ScarletRaven"],
+    "install_msg" : "Use `[p]fun <on/off> to see how often each command is used.",
+    "name" : "Fun",
+    "short" : "A variety of fun, quirky commands.",
+    "description" : "A variety of fun, quirky commands. Anywhere from seeing who can win in a sword fight, to updog",
+    "tags" : ["fun", "general"]
 }
