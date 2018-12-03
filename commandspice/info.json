@@ -1,9 +1,0 @@
-{
-    "AUTHOR" : "ScarletRaven",
-    "DESCRIPTION" : "Do you ever use simple commands like [p]ping, but just wish for something more?",
-    "DISABLED" : false,
-    "TAGS" : ["fun", "random", "automated", "community"],
-    "INSTALL_MSG" : "This cog has no commands. Just load and relax.",
-    "NAME" : "CommandSpice",
-    "SHORT" : "Spice Up Everyday Commands"
-}
