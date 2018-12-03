@@ -1,0 +1,8 @@
+{
+    "author" : ["ScarletRaven"],
+    "install_msg" : "The bot will delete messages and warm users of using caps. \n Make sure the bot has the `manage_messages` perm.",
+    "name" : "CapSpam",
+    "short" : "Prevents spam usage of capslock phrases.",
+    "description" : "Prevents spam usage of capslock phrases. SOMETHING LIKE THIS",
+    "tags" : ["admin", "general", "utility", "automated", "moderation"]
+}

@@ -1,0 +1,8 @@
+{
+    "author" : ["ScarletRaven"],
+    "install_msg" : "The bot will delete messages and warm users of using TitleCase. \n Make sure the bot has the `manage_messages` perm.",
+    "name" : "TitleCase",
+    "short" : "Prevents spam usage of TitleCase phrases.",
+    "description" : "Prevents spam usage of TitleCase phrases. Something Like This Is Bad",
+    "tags" : ["admin", "general", "utility", "automated", "moderation"]
+}
