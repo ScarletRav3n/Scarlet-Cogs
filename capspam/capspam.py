@@ -3,7 +3,7 @@ from redbot.core import commands, checks
 import os
 import re
 
-__author__ = "ScarletRav3n"
+__author__ = "ScarletRaven"
 
 
 class CapSpam(commands.Cog):
@@ -29,19 +29,19 @@ class CapSpam(commands.Cog):
             \b)''')
 
         def c(s): return [u[0] for u in re.findall(pattern, s)]
+        user = ctx.m.author.mention
         trigger = str(c(m.content))
+        quote = trigger[2:-2]
         for x in await self.bot.get_prefix(m):
             if m.content.startswith(x) or m.content.startswith('"') or m.content.startswith('\\'):
                 return
             if m.author.bot is False and trigger != "[]":
                 self.count += 1
                 if self.count > 2:
-                    await ctx.m.channel.send("{0} wrote *\"{1}...\"* \
-                                            \nPlease refrain from using caps.".format
-                                            (str(m.author.name), trigger[2:-2]), delete_after=30)
+                    await ctx.m.channel.send(f"{user} wrote *\"{quote}...\"* \
+                                            \nPlease refrain from using caps.", delete_after=30)
                     try:
                         await ctx.delete()
                     except discord.errors.Forbidden:
-                        await ctx.m.channel.send("*(Wanted to delete mid {0} but no permissions)*"
-                                            .format(m.id))
+                        await ctx.m.channel.send(f"*(Wanted to delete mid {m.id} but no permissions)*")
                     self.count = 0

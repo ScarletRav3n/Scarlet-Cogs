@@ -2,7 +2,7 @@ import discord
 from redbot.core import commands, checks
 from random import randint, choice
 
-__author__ = "ScarletRav3n"
+__author__ = "ScarletRaven"
 
 
 class Fun(commands.Cog):
@@ -28,101 +28,93 @@ class Fun(commands.Cog):
     async def sword(self, ctx, *, user: discord.Member):
         """Sword Duel!"""
         self.nsword += 1
-        n = self.nsword
+        random = randint(2,120)
         if user.id == ctx.bot.user.id:
             await ctx.send("I'm not the fighting kind")
         else:
-            await ctx.send("{0} and {1} dueled for {2} gruesome hours! It was a long, heated battle, \
-                            but {3} came out victorious!".format(ctx.author.mention, user.mention, \
-                            str(randint(2,120)), choice([ctx.author.mention, user.mention])))
-        await self.counter(ctx, n)
+            await ctx.send(f"{ctx.author.mention} and {user.mention} dueled for {random} hours! \
+                           \nIt was a long heated battle, but {choice([ctx.author.mention, user.mention])} came out victorious!")
+        await self.counter(ctx, count = self.nsword)
 
     @commands.command()
     async def love(self, ctx, user: discord.Member):
         """Found your one true love?"""
         self.nlove += 1
-        n = self.nlove
+        random = randint(0, 100)
         if user.id == ctx.bot.user.id:
             await ctx.send("I am not capable of loving like you can. I'm sorry.")
         else:
-            await ctx.send("{0} is capable of loving {1} a whopping {2}%!".format(ctx.author.mention, \
-                            user.mention, str(randint(0, 100))))
-        await self.counter(ctx, n)
+            await ctx.send(f"{ctx.author.mention} is capable of loving {user.mention} a whopping {random}%!")
+        await self.counter(ctx, count = self.nlove)
 
     @commands.command()
     async def squat(self, ctx):
         """How is your workout going?"""
         self.nsquat += 1
-        n = self.nsquat
-        await ctx.send("{0} puts on their game face and does {1} squats in {2} minutes. Wurt it!".format\
-                        (ctx.author.mention, str(randint(2, 1000)), str(randint(4, 90))))
-        await self.counter(ctx, n)
+        random = randint(2, 1000)
+        random1 = randint(4, 90)
+        await ctx.send(f"{ctx.author.mention} puts on their game face and does {random} squats in {random1} minutes. Wurt it!")
+        await self.counter(ctx, count = self.nsquat)
 
     @commands.command()
     async def pizza(self, ctx):
         """How many slices of pizza have you eaten today?"""
         self.npizza += 1
-        n = self.npizza
-        await ctx.send("{0} has eaten {1} slices of pizza today.".format(ctx.author.mention, randint(2, 120)))
-        await self.counter(ctx, n)
+        random = randint(2, 120)
+        await ctx.send(f"{ctx.author.mention} has eaten {random} slices of pizza today.")
+        await self.counter(ctx, count = self.npizza)
 
     @commands.command()
     async def bribe(self, ctx):
         """Find out who is paying under the table"""
         self.nbribe += 1
-        n = self.nbribe
-        await ctx.send("{0} has bribed {1} with {2} dollars!".format(ctx.author.mention, ctx.user.user.mention, \
-                        str(randint(10, 10000))))
-        await self.counter(ctx, n)
+        random = randint(10, 10000)
+        await ctx.send(f"{ctx.author.mention} has bribed {ctx.user.user.mention} with {random} dollars!")
+        await self.counter(ctx, count = self.nbribe)
 
     @commands.command()
     async def daddy(self, ctx):
         """Pass the salt"""
         self.ndad += 1
-        n = self.ndad
-        await ctx.send("I'm kink shaming you, {0}".format(ctx.author.mention))
-        await self.counter(ctx, n)
+        await ctx.send(f"I'm kink shaming you, {ctx.author.mention}")
+        await self.counter(ctx, count = self.ndad)
     
     @commands.command()
     async def calculated(self, ctx):
         """That was 100% calculated!"""
         self.ncalc += 1
-        n = self.ncalc
-        await ctx.send("That was {0}% calculated!".format(str(randint(0, 100))))
-        await self.counter(ctx, n)
+        random = randint(0, 100)
+        await ctx.send(f"That was {random}% calculated!")
+        await self.counter(ctx, count = self.ncalc)
 
     @commands.command()
     async def butts(self, ctx):
         """Butts"""
         self.nbutt += 1
-        n = self.nbutt
         await ctx.send("ლ(́◉◞౪◟◉‵ლ)")
-        await self.counter(ctx, n)
+        await self.counter(ctx, count = self.nbutt)
     
     @commands.command(name="commands")
     async def _commands(self, ctx):
         """Command the bot"""
         self.ncom += 1
-        n = self.ncom
         await ctx.send("Don't tell me what to do.")
-        await self.counter(ctx, n)
+        await self.counter(ctx, count = self.ncom)
 
     @commands.command()
     async def flirt(self, ctx):
         """Slide into DMs"""
         self.nflirt += 1
-        n = self.nflirt
         await ctx.send("xoxoxoxoxo ;)) ))) hey b a b e ; ; ;))) ) ;)")
-        await self.counter(ctx, n)
+        await self.counter(ctx, count = self.nflirt)
     
     @commands.command()
-    async def updog(self):
+    async def updog(self, ctx):
         """This is updog"""
         self.nup += 1
-        n = self.nup
-        await self.bot.say("What's updog?")
-        await self.counter(ctx, n)
+        await ctx.send("What's updog?")
+        await self.counter(ctx, count = self.nup)
 
-    async def counter(self, ctx, n):
+    async def counter(self, ctx, count):
         if self.toggle:
-            await ctx.send("*This command has been used {0} times.*".format(n))
+            await ctx.send(f"*This command has been used {count} times.*")
