@@ -33,13 +33,12 @@ class TitleCase:
         user = ctx.m.author.mention
         trigger = str(c(m.content))
         quote = trigger[2:-2]
-        for x in await self.bot.get_prefix(m):
-            if m.content.startswith(x) or m.content.startswith('"') or m.content.startswith('\\'):
-                return
-            if m.author.bot is False and trigger != "[]":
-                await ctx.m.channel.send(f"{user} wrote *\"{quote}...\"* \
-                                        \nPlease refrain from using weird capitals.", delete_after=30)
-                try:
-                    await ctx.delete()
-                except discord.errors.Forbidden:
-                    await ctx.m.channel.send(f"*(Wanted to delete mid {m.id} but no permissions)*")
+		if (await self.bot.get_context(m)).valid or m.content.startswith('"') or m.content.startswith('\\'):
+			return
+		if m.author.bot is False and trigger != "[]":
+			await ctx.m.channel.send(f"{user} wrote *\"{quote}...\"* \
+									\nPlease refrain from using weird capitals.", delete_after=30)
+			try:
+				await ctx.delete()
+			except discord.errors.Forbidden:
+				await ctx.m.channel.send(f"*(Wanted to delete mid {m.id} but no permissions)*")
