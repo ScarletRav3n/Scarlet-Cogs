@@ -32,15 +32,15 @@ class CapSpam(commands.Cog):
         user = ctx.m.author.mention
         trigger = str(c(m.content))
         quote = trigger[2:-2]
-		if (await self.bot.get_context(m)).valid or m.content.startswith('"') or m.content.startswith('\\'):
-			return
-		if m.author.bot is False and trigger != "[]":
-			self.count += 1
-			if self.count > 2:
-				await ctx.m.channel.send(f"{user} wrote *\"{quote}...\"* \
-										\nPlease refrain from using caps.", delete_after=30)
-				try:
-					await ctx.delete()
-				except discord.errors.Forbidden:
-					await ctx.m.channel.send(f"*(Wanted to delete mid {m.id} but no permissions)*")
-                    self.count = 0
+        if (await self.bot.get_context(m)).valid or m.content.startswith('"') or m.content.startswith('\\'):
+            return
+        if m.author.bot is False and trigger != "[]":
+            self.count += 1
+            if self.count > 2:
+                await ctx.m.channel.send(f"{user} wrote *\"{quote}...\"* \
+                                        \nPlease refrain from using caps.", delete_after=30)
+                try:
+                    await ctx.delete()
+                except discord.errors.Forbidden:
+                    await ctx.m.channel.send(f"*(Wanted to delete mid {m.id} but no permissions)*")
+                self.count = 0
