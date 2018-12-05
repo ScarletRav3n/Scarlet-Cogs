@@ -1,0 +1,8 @@
+{
+  "author" : ["ScarletRaven"],
+  "install_msg" : "This cog has no commands. Just load and relax.",
+  "name" : "Spice",
+  "short" : "Spice up everyday commands.",
+  "description" : "adds some complexity to simple commands like `[p]ping`, like sass and quotes!",
+  "tags" : ["fun", "general", "automated", "community"]
+}
