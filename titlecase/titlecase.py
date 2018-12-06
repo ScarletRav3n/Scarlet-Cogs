@@ -6,7 +6,7 @@ import re
 __author__ = "ScarletRaven"
 
 
-class TitleCase:
+class TitleCase(commands.Cog):
     """Stop people from writing in CamelCase"""
 
     def __init__(self, bot):
@@ -20,7 +20,7 @@ class TitleCase:
             await self.bot.send_cmd_help(ctx)
 
 
-    async def on_message(self, ctx, m: discord.Message):
+    async def on_message(self, m: discord.Message):
         pattern = re.compile(r'''(?x)(\b
             [A-Z](\S*?)[ ]
             [A-Z][a-z](\S*?)[ ]
@@ -30,15 +30,15 @@ class TitleCase:
             \b)''')
 
         def c(s): return [u[0] for u in re.findall(pattern, s)]
-        user = ctx.m.author.mention
+        user = m.author.mention
         trigger = str(c(m.content))
         quote = trigger[2:-2]
         if (await self.bot.get_context(m)).valid or m.content.startswith('"') or m.content.startswith('\\'):
             return
         if m.author.bot is False and trigger != "[]":
-            await ctx.m.channel.send(f"{user} wrote *\"{quote}...\"* \
+            await m.channel.send(f"{user} wrote *\"{quote}...\"* \
                                     \nPlease refrain from using weird capitals.", delete_after=30)
             try:
-                await ctx.delete()
+                await m.delete()
             except discord.errors.Forbidden:
-                await ctx.m.channel.send(f"*(Wanted to delete mid {m.id} but no permissions)*")
+                await m.channel.send(f"*(Wanted to delete mid {m.id} but no permissions)*")
