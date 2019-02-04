@@ -15,13 +15,14 @@ class Spice(BaseCog):
 
     def __init__(self, bot):
       self.bot = bot
+      with open(bundled_data_path(self) / "commandspice.json") as f:
+        self.data = json.load(f)
 
     async def on_command(self, ctx):
+
       m = ctx.message
       if m.author.bot is False:
-        with open(bundled_data_path(self) / "commandspice.json") as f:
-          data = json.load(f)
-          for k, v in data.items():
-            vchoice = random.choice(v)
-            if (k in str(ctx.command)) & (vchoice != ""):
-              await ctx.send(vchoice)
+        for k, v in self.data.items():
+          vchoice = random.choice(v)
+          if (k in str(ctx.command)) & (vchoice != ""):
+            await ctx.send(vchoice)
