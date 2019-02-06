@@ -22,7 +22,7 @@ class Kaomoji:
         dataIO.is_valid_json("data/kaomoji/feelings.json")
 
     @commands.group(aliases=["kao"], invoke_without_command=True, pass_context=True)
-    async def kaomoji(self, ctx, *, category: str, n: int=None):
+    async def kaomoji(self, ctx, category: str, n: int=None):
         str_category = category.lower()
         m = ctx.message
         if self.toggle:
