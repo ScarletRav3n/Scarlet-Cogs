@@ -14,7 +14,6 @@ class Count(BaseCog):
 
     def __init__(self, bot):
         self.bot = bot
-        self.toggle = False
         self.path = cog_data_path(self) / 'count.json'
         try:
             f = open(self.path, 'r')
