@@ -1,4 +1,4 @@
-## Scarlet-Cogs
+# Scarlet-Cogs
 Cogs for the V3 edition of [Red Discord Bot](https://github.com/Cog-Creators/Red-DiscordBot)
 
 ## Installation
@@ -31,7 +31,7 @@ After ensuring you have [Red Bot V3](https://github.com/Cog-Creators/Red-Discord
 * List of 3,000+ kaomoji's!
 
 #### Spice Cog
-* Adds spice to make simple commands seems a bit more complex
+* Adds spice to make simple commands seem a bit more complex
 * [p]ping has a long list of extra thigs it might say!
 
 #### TitleCase Cog
