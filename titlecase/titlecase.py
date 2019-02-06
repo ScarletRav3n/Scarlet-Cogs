@@ -28,7 +28,7 @@ class TitleCase(commands.Cog):
             \b)''')
 
         def c(s): return [u[0] for u in re.findall(pattern, s)]
-        user = m.author.mention
+        user = m.author.display_name
         trigger = str(c(m.content))
         quote = trigger[2:-2]
         if await self.bot.is_automod_immune(m):
@@ -36,7 +36,7 @@ class TitleCase(commands.Cog):
         if (await self.bot.get_context(m)).valid or m.content.startswith('"') or m.content.startswith('\\'):
             return
         if m.author.bot is False and trigger != "[]":
-            await self.bot.send_filtered(m.channel, f"{user} wrote *\"{quote}...\"* \
+            await self.bot.send_filtered(m.channel, content=f"{user} wrote *\"{quote}...\"* \
                                     \nPlease refrain from using weird capitals.", delete_after=30)
             try:
                 await m.delete()

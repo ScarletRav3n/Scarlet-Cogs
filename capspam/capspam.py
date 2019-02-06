@@ -11,6 +11,7 @@ class CapSpam(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.count = 0
 
     async def capspam(self, ctx):
         """CapSpam settings"""
@@ -18,7 +19,6 @@ class CapSpam(commands.Cog):
             await self.bot.send_cmd_help(ctx)
 
     async def on_message(self, m: discord.Message):
-        count = 0
         pattern = re.compile(r'''(?x)(\b
             [A-Z](\S*?)[ ]
             [A-Z](\S*?)[ ]
@@ -27,7 +27,7 @@ class CapSpam(commands.Cog):
             \b)''')
 
         def c(s): return [u[0] for u in re.findall(pattern, s)]
-        user = m.author.mention
+        user = m.author.display_name
         trigger = str(c(m.content))
         quote = trigger[2:-2]
         if await self.bot.is_automod_immune(m):
@@ -35,12 +35,13 @@ class CapSpam(commands.Cog):
         if (await self.bot.get_context(m)).valid or m.content.startswith('"') or m.content.startswith('\\'):
             return
         if m.author.bot is False and trigger != "[]":
-            count += 1
-            if count > 2:
-                await self.bot.send_filtered(m.channel, f"{user} wrote *\"{quote}...\"* \
+            self.count += 1
+            print(self.count)
+            if self.count > 2:
+                await self.bot.send_filtered(m.channel, content=f"{user} wrote *\"{quote}...\"* \
                                         \nPlease refrain from using caps.", delete_after=30)
+                self.count = 0
                 try:
                     await m.delete()
                 except discord.errors.Forbidden:
                     await m.channel.send(f"*(Wanted to delete mid {m.id} but no permissions)*")
-                count = 0
