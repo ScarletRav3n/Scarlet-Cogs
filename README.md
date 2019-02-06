@@ -1,5 +1,6 @@
 # scarlet-cogs
 Cogs for 26's [Red DiscordBot](https://github.com/Twentysix26/Red-DiscordBot)
+**[ [This version is no longer being updated, only bug-fixes. Use the current one]] ](https://github.com/ScarletRav3n/Scarlet-Cogs/)**
 
 #### Kaomoji Cog
 * Calls a random kaomoji.
