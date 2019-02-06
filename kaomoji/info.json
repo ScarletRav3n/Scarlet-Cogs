@@ -1,0 +1,8 @@
+{
+  "author" : ["ScarletRaven"],
+  "install_msg" : "Includes a small data file. `[p]kaomoji list` to see the categories available. \nUse `[p]kao` for quicker results.",
+  "name" : "Kaomoji",
+  "short" : "Fun assortment of emoticons.",
+  "description" : "Random and extensive assortment of Kaomojis!",
+  "tags" : ["fun", "emoji", "japanese", "community"]
+}

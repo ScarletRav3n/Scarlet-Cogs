@@ -1,5 +1,5 @@
 # Scarlet-Cogs
-Cogs for a [Red Discord Bot](https://github.com/Cog-Creators/Red-DiscordBot)
+Cogs for the V3 edition of [Red Discord Bot](https://github.com/Cog-Creators/Red-DiscordBot)
 
 These cogs are a collection of enhancements and extensions.
 
@@ -35,6 +35,11 @@ And load each cog with
 * Find out if your love crush is the right one.
 * Other fun and random commands!
 * Has a counter so you know how many times each command is used.
+
+## Kaomoji Cog
+* Calls a random emoticon
+* Assorted by emotions
+* List of 3,000+ kaomoji's!
 
 ## Spice Cog
 * Adds spice to make simple commands seems a bit more complex
