@@ -1,6 +1,6 @@
 {
     "author" : ["ScarletRaven"],
-    "install_msg" : "Use `[p]count` to see how often each command is used.",
+    "install_msg" : "Use `[p]count [command]` to see how often each command is used.\nUse `[p]count all` to see all of it at once.",
     "name" : "Count",
     "short" : "Counts how many times a command is used.",
     "description" : "For every command, you can see how often it's used. Just how many times is `[p]ping` called anyways?",

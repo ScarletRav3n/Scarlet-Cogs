@@ -15,36 +15,41 @@ class Count(BaseCog):
     def __init__(self, bot):
         self.bot = bot
         self.toggle = False
-        self.cjson = cog_data_path(self) / 'count.json'
+        self.path = cog_data_path(self) / 'count.json'
         try:
-            open(self.cjson, 'r')
+            f = open(self.path, 'r')
         except IOError:
-            json.dump({}, open(self.cjson, 'w'))
+            json.dump({}, open(self.path, 'w'))
+        self.load_data = json.load(f)
 
-    @commands.command()
-    @checks.admin_or_permissions(administrator=True)
-    async def count(self, ctx, on_off: bool):
-        """Toggle counting for commands"""
-        if on_off is True:
-            await ctx.send('Counting counter is now ON.')
-            self.toggle = True
+    @commands.group(invoke_without_command=True)
+    async def count(self, ctx, *, command: str):
+        """Call count for command"""
+        str_command = command.lower()
+        if str_command in self.load_data:
+            await self.counter(ctx, command = str_command, count = self.load_data[str_command])
         else:
-            await ctx.send('Counting counter is now OFF.')
-            self.toggle = False
-    
-    async def counter(self, ctx, count):
-        if self.toggle:
-            await ctx.send(f"*This command has been used {count} times.*")
+            await ctx.send(f"**{str_command}** command hasn't been used.")
+
+    async def counter(self, ctx, command, count):
+        await ctx.send(f"**{command}** has been used {count} times.")
+
+    @count.command()
+    @checks.admin_or_permissions(administrator=True)
+    async def all(self, ctx):
+        """List all command counts"""
+        all_data = json.dumps(self.load_data, sort_keys=True, indent=0)
+        for ch in ['"', ',', "{", "}"]:
+            if ch in all_data:
+                all_data = all_data.replace(ch, '')
+        await ctx.send(f"List of all commands counted: \
+                        \n```json\n{all_data}```")
 
     async def on_command(self, ctx):
         k = str(ctx.command)
-        m = ctx.message
-        if m.author.bot is False:
-            with open(self.cjson, 'r') as f:
-                data = json.load(f)
-                if not k in data:
-                    data[k] = 0
-                data[k] += 1
-                await self.counter(ctx, count = data[k])
-            with open(self.cjson, 'w') as f:
-                json.dump(data, f, sort_keys=True, indent=4)
+        if ctx.message.author.bot is False:
+            if not k in self.load_data:
+                self.load_data[k] = 0
+            self.load_data[k] += 1
+        with open(self.path, 'w') as f:
+            json.dump(self.load_data, f, sort_keys=True, indent=4)
