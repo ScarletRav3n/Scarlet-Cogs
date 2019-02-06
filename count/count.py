@@ -46,5 +46,5 @@ class Count(BaseCog):
                     data[k] = 0
                 data[k] += 1
                 await self.counter(ctx, count = data[k])
-                with open(self.cjson, 'w') as f:
-                    json.dump(data, f, sort_keys=True, indent=4)
+            with open(self.cjson, 'w') as f:
+                json.dump(data, f, sort_keys=True, indent=4)
